@@ -1,0 +1,169 @@
+/* ****
+図
+**** */
+
+.small ul {
+    font-size: .7rem;
+}
+
+:has(> .fig-process) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.fig-process {
+    inline-size: 25rem;
+}
+
+/* ****
+表の罫線とセルの揃え
+**** */
+
+table thead th,
+table thead td {
+    border-top: 1px solid;
+    border-bottom: 2px double;
+}
+table tbody tr:last-child th,
+table tbody tr:last-child td {
+    border-bottom: 1px solid;
+}
+
+/* ****
+注
+**** */
+
+.footnote-ref {
+    vertical-align: super;
+    text-decoration: none;
+}
+.footnote-ref::before {
+    content: "[";
+}
+.footnote-ref::after {
+    content: "]";
+}
+.footnote-ref > sup {
+    vertical-align: baseline;
+}
+
+/* ****
+個別の図表
+**** */
+
+.result {
+    font-size: .8rem;
+}
+.result td {
+    text-align: right;
+    font-family: var(--code-font-family);
+}
+.result .em {
+    color: crimson;
+    text-decoration: underline;
+    text-underline-offset: .2em;
+}
+
+#colloc-eval {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: .5em;
+    row-gap: .5em;
+}
+#colloc-eval figcaption {
+    font-size: .9em;
+    margin: .5em;
+}
+#colloc-eval img.em + figcaption {
+    color: crimson;
+    text-decoration: underline;
+    text-underline-offset: .2em;
+}
+
+/* ****
+パズル問題
+**** */
+
+.puzzle {
+    list-style-type: none;
+    font-size: .8em;
+}
+.puzzle {
+    padding-inline-start: 1.5rem;
+}
+.puzzle > li {
+    text-indent: -1.5em;
+    padding-inline-start: 1.5em;
+    margin-inline-start: -1.5em;
+}
+.original_order {
+    font-weight: bold;
+    margin-inline-end: .5em;
+}
+
+/* ****
+時間的な共起分析
+**** */
+
+table.bigram {
+    table-layout: fixed;
+    border: 1px black solid;
+    border-collapse: collapse;
+    border-spacing: 0px;
+    text-shadow: none;
+    font-size: 80%;
+}
+table.bigram th,
+table.bigram td {
+    border: 1px black solid;
+    padding: 0.2em 0.5em;
+    vertical-align: top;
+    font-weight: normal;
+}
+table.bigram th {
+    text-align: center;
+}
+table.bigram td {
+    text-align: right;
+}
+span.two-sigma,
+table.bigram td.two-sigma {
+    background-color: Crimson;
+    color: white;
+}
+span.one-sigma,
+table.bigram td.one-sigma {
+    background-color: Gold;
+    color: black;
+}
+span.two-sigma.one-sigma {
+    background-color: Crimson;
+    color: white;
+    text-decoration: underline solid;
+}
+
+
+table.col-align-lrlr tr > td:nth-child(1),
+table.col-align-lrlr tr > td:nth-child(3) {
+    text-align: left;
+}
+table.col-align-lrlr td:nth-child(2),
+table.col-align-lrlr td:nth-child(4) {
+    text-align: right;
+}
+table.col-align-llrr td:nth-child(1),
+table.col-align-llrr td:nth-child(2) {
+    text-align: left;
+}
+table.col-align-llrr td:nth-child(3),
+table.col-align-llrr td:nth-child(4) {
+    text-align: right;
+}
+table.col-align-lll td:nth-child(1),
+table.col-align-lll td:nth-child(2) {
+    white-space: nowrap;
+}
+
+/* ***
+End of script
+*** */
