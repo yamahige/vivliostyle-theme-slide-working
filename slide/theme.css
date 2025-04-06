@@ -359,12 +359,8 @@ h4 + p {
 
 .footnotes {
     break-before: page;
-    font-size: .8em;
+    font-size: .7em;
     string-set: chapter "", chapter-number "";
-}
-.footnotes > ol > li::marker {
-    content: "[" counter(list-item) "]";
-    margin-inline-end: 1em;
 }
 .footnotes::before {
     content: "";
