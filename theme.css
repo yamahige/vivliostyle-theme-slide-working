@@ -71,7 +71,7 @@
     }
     @bottom-center {
         margin-inline-start: 1em;
-        content: string(string-author);
+        content: string(string-conference);
         max-width: 70%;
         overflow: hidden;
         white-space: nowrap;
@@ -145,6 +145,33 @@ h2.author {
     string-set: string-author content();
 }
 
+/* 研究会名 */
+
+h2.conference {
+    display: none;
+}
+
+:has(> .conference) {
+    margin-block-start: 9mm;
+    margin-block-end: 0;
+    text-align: center;
+    font-size: 1rem;
+}
+:has(> .conference) > p {
+    display: inline;
+    margin-block: 0;
+    margin-inline-start: auto;
+    margin-inline-end: auto;
+    font-family: var(--yh-theme--sans-serif-font-family);
+}
+:has(> .conference) > p:not(:first-of-type) {
+    margin-inline-start: .5rem;
+}
+
+:has(> .conference) > p:first-of-type {
+    string-set: string-conference content();
+}
+
 /* ****
 日付、バージョン
 **** */
@@ -172,10 +199,10 @@ h2.author {
 **** */
 
 .new-slide,
-section:has(h2:not(.author, .version, .date)) {
+section:has(h2:not(.author, .version, .date, .conference)) {
     break-before: page;
 }
-section:has(h3:not(.author, .version, .date)) {
+section:has(h3:not(.author, .version, .date, .conference)) {
     break-before: page;
 }
 
@@ -211,13 +238,13 @@ h2:not(.title, .reference)::before {
     content: counter(section) ".";
     margin-inline-end: .5rem;
 }
-h3:is(.author, .date, .version) {
+h3:is(.author, .date, .version, .conference) {
     display: none;
 }
-h3:not(.author, .date, .version) {
+h3:not(.author, .date, .version, .conference) {
     counter-increment: subsection;
 }
-h3:not(.author, .date, .version)::before {
+h3:not(.author, .date, .version, .conference)::before {
     content: counter(section) "." counter(subsection) " ";
     margin-inline-end: .5rem;
 }
