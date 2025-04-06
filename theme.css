@@ -23,6 +23,8 @@
     text-align: justify;
     */
     text-spacing: auto;
+    text-spacing-trim: trim-start;
+    text-spacing-trim: trim-both;
     text-underline-offset: auto;
     text-underline-position: left;
     word-break: auto-phrase;
@@ -45,7 +47,7 @@
 
     @top-left {
         content: string(string-title);
-        display: block;
+        max-width: 50%;
         font-size: .8rem;
         overflow: hidden;
         white-space: nowrap;
@@ -53,26 +55,31 @@
     }
     @top-right {
         content: string(chapter-number, first) " " string(chapter, first);
-        display: block;
-        white-space: pre-line;
-        text-overflow: ellipsis;
+        max-width: 50%;
+        margin-inline-start: 1em;
         font-size: .8rem;
+        word-break: normal;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        display: block;
+        min-width: 0;
     }
     @bottom-left {
         content: string(string-date);
-        max-width: 15dvw;
-        text-overflow: ellipsis;
+        max-width: 15%;
     }
     @bottom-center {
+        margin-inline-start: 1em;
         content: string(string-author);
-        max-width: 70dvw;
+        max-width: 70%;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
     }
     @bottom-right {
-        content: "# " counter(page) " / " counter(pages);
-        max-width: 15dvw;
+        content: counter(page) " / " counter(pages);
+        max-width: 15%;
         text-overflow: ellipsis;
     }
 }
@@ -181,9 +188,6 @@ section:has(h2, h3) {
 
 h2, h3, h4, h5, h6 {
     word-break: auto-phrase;
-    /*
-    text-wrap: balance;
-    */
     font-family: var(--yh-theme--sans-serif-font-family);
 }
 h2,
@@ -328,6 +332,30 @@ h4 + p {
 }
 
 /* ****
+脚注
+**** */
+
+.fn {
+    counter-increment: footnote;
+    float: footnote;
+    font-size: .8em;
+}
+::footnote-marker {
+    content: "*" counter(footnote) " ";
+    color: rgb(0,0,238);
+}
+::footnote-call {
+    content: "*" counter(footnote);
+    font-size: .7em;
+    color: rgb(0,0,238);
+    position: relative;
+    inset-block-start: -0.5rem;
+}
+.fn + .fn::footnote-call {
+    margin-inline-start: .25em;
+}
+
+/* ****
 文末注
 **** */
 
@@ -341,7 +369,7 @@ h4 + p {
     string-set: chapter "", chapter-number "";
 }
 .footnotes::before {
-    content: "注、参考文献";
+    content: "";
     display: block;
     margin-block-start: 1rem;
     margin-block-end: calc(var(--yh-theme--spacing-block) * 0.3);
@@ -361,7 +389,11 @@ h4 + p {
 **** */
 
 code {
-    background-color: lightgray;
+    padding: 0.125em;
+}
+code,
+pre {
+    background-color: #f2f1f1;
 }
 
 /* ****

@@ -1,21 +1,4 @@
 /* ****
-図
-**** */
-
-.small ul {
-    font-size: .7rem;
-}
-
-:has(> .fig-process) {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.fig-process {
-    inline-size: 25rem;
-}
-
-/* ****
 表の罫線とセルの揃え
 **** */
 
@@ -27,6 +10,25 @@ table thead td {
 table tbody tr:last-child th,
 table tbody tr:last-child td {
     border-bottom: 1px solid;
+}
+
+/* ***
+マージンボックスの表
+*** */
+
+#page-margin-table {
+    margin-block-start: 1em;
+}
+
+#page-margin-table table {
+    inline-size: 95%;
+    table-layout: fixed;
+}
+#page-margin-table thead {
+    display: none;
+}
+#page-margin-table td {
+    border: thin solid gray;
 }
 
 /* ****

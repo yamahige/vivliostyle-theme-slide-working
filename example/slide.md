@@ -37,7 +37,7 @@ v0
 この記事では、研究会発表のスライドを想定して、HTML+CSSで作るスライドいいところをあげてみます。
 
 - 学会の研究会での発表ならば、元になる論文／予稿があって、テキストで主張する表現はできています
-- ヘッダーやフッターに挿入する項目（ 「日付」、「研究会名」、など）や書式（「スライド番号/総スライド数」、など）が研究室などで指導されていたりします
+- ヘッダーやフッターに挿入する項目（「日付」、「研究会名」、など）や書式（「スライド番号/総スライド数」、など）が研究室などで指導されていたりします
 
 ## テキストが図を回り込んでくれる
 
@@ -50,7 +50,7 @@ v0
 
 ## 改行位置の調整
 
-改行の位置を調整できます。
+自動的に折り返される改行の位置を調整できます。
 
 <div style="word-break: normal;">
 
@@ -75,19 +75,95 @@ v0
 
 </div>
 
+このスライド全体には`word-break: auto-phrase;`と設定されています。
+
 ## 約物の前後の空白の詰め
 
-「」
+"「"や"（"といった約物が行頭・行末にきたり、連続する場合の空白の詰めを制御できます。
+スライドはテキストが短く箇条書きも多いので、行頭は揃ってる方がテキストのまとまりを見やすいでしょう。
+
+<div style="text-spacing-trim: space-all;">
+
+`text-spacing-trim: space-all;`で、約物の空白を詰めません。
+
+- 「色は匂へど散りぬるを我が世誰ぞ常ならむ有為の奥山今日越えて浅き夢見し酔ひもせず。」
+- ヘッダーやフッターに挿入する項目（「日付」、「研究会名」、など）が研究室などで指導されていたりします
+
+</div>
+
+<div style="text-spacing-trim: trim-both;">
+
+`text-spacing-trim: trim-both;`で、行頭行末や連続する約物の空白を詰めます。
+
+- 「色は匂へど散りぬるを我が世誰ぞ常ならむ有為の奥山今日越えて浅き夢見し酔ひもせず。」
+- ヘッダーやフッターに挿入する項目（「日付」、「研究会名」、など）が研究室などで指導されていたりします
+
+</div>
+
+このスライド全体には`text-spacing-trim: trim-both;`と設定されています
 
 ## ヘッダーとフッター
 
-ヘッダーやフッターに
+- スライド本文のテキストを抜き出して、ヘッダーやフッターに表示できます
+    * 発表のタイトルやセクションの見出し
+    * 日付、発表者、研究会名など
+- 総スライド数を数えてくれて、その値を自動生成するテキストに含められます
 
-### プレゼンの内容
+### CSSのマージン・ボックス
 
-#### セクションの見出し
+ヘッダーやフッターを表示するには、CSSのマージン・ボックスを利用します。マージン・ボックスは、`@top-left`や`@bottom-right-corner`など、側面とコーナーの合計16個が定義されています<span class="fn">CSS Paged Media Module Level 3 - 5. Page-Margin Boxes https://www.w3.org/TR/css-page-3/#margin-boxes</span><span class="fn">CSS - @page - とほほのWWW入門 https://www.tohoho-web.com/css/rule/page.htm</span>。
 
-#### タイトル、日付、著者名、研究会名など
+<div id="page-margin-table">
+
+| コーナー | | | | コーナー |
+|---:|:---:|:---:|:---:|:---|
+| top-left-corner | top-left | top-center | top-right | top-right-corner |
+| left-top | | | | right-top |
+| left-middle | | | | right-middle |
+| left-bottom | | | | right-bottom |
+| bottom-left-corner | bottom-left | bottom-center | bottom-right | bottom-right-corner |
+
+</div>
+
+### スライド本文のテキストを抜き出して表示
+
+CSSの名前付き文字列(named string<span class="fn">1.1. Named strings - CSS Generated Content for Paged Media Module https://www.w3.org/TR/css-gcpm-3/#named-strings</span>)という仕組みを使います。
+ざっくり言うと
+
+1. 抜き出したいテキストに印を付ける
+1. その印のついたテキストに名前を付ける
+1. その名前を使って、表示したい場所にテキストを生成する
+
+簡単な方から、次の順番で説明します:
+
+1. 発表のタイトルやセクションの見出し
+1. 発表のタイトル、日付、発表者、研究会名など
+
+### 発表のタイトルやセクションの見出し
+
+発表タイトルには`h1`、セクションの見出しには`h2`という印(タグ)が付いています。`h2`見出しを、自動生成した番号付きで各スライドの`@top-right`マージンに表示するとします。
+
+`string-set`プロパティを使って、`h2`の前に自動生成した番号に、例えば`chapter-number`という名前を、テキストに`chapter`という名前を付けます。
+
+```css
+h2 {
+    string-set: chapter-number content(before), chapter content();
+}
+```
+
+`content(before)`は`h2`の`::before`疑似要素の内容を示します。`content()`は`content(text)`という意味で、`h2`のテキストを示します。
+
+そして、`@top-right`マージンの`content`プロパティの値で、`string`関数の中でこれらの名前を使ってテキストを参照します。
+
+```css
+@page {
+    @top-right { content: string(chapter-number, first) " " string(chapter, first); }
+}
+```
+
+### 発表のタイトル、日付、発表者、研究会名など
+
+「発表タイトル」といった
 
 ### スライド番号 / 総スライド数
 
