@@ -171,6 +171,7 @@ h2.author {
 スライド
 **** */
 
+.new-slide,
 section:has(h2:not(.author, .version, .date)) {
     break-before: page;
 }
@@ -178,6 +179,7 @@ section:has(h3:not(.author, .version, .date)) {
     break-before: page;
 }
 
+.new-slide,
 section:has(h2, h3) {
     clear: both;
 }
@@ -219,38 +221,15 @@ h3:not(.author, .date, .version)::before {
     content: counter(section) "." counter(subsection) " ";
     margin-inline-end: .5rem;
 }
-h4, h5, h6 {
+h4 {
     margin-block-start: .5rem;
     margin-block-end: 0;
+    font-size: var(--yh-theme--slide-title-font-size);
 }
-
-h4 {
-}
-h4::before {
-    content: none;
-}
-
-/* h5はrun-in。h6もrun-inにしておく。 */
-h5,
-h6 {
-    display: inline;
-    margin-inline-end: 1rem;
-  }
-h5::before,
-h6::before {
-    content: "";
-    display: block;
-    margin-block: 0;
-}
-h5 + p,
-h6 + p {
-    display: inline;
-}
-h5 + p::after,
-h6 + p::after {
-    content: "";
-    display: block;
-    margin-block: 0;
+h5, h6 {
+    margin-block-start: .5rem;
+    margin-block-end: 0;
+    font-size: 100%;
 }
 
 .no-number {

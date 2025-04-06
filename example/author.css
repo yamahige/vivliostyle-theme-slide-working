@@ -167,5 +167,28 @@ table.col-align-lll td:nth-child(2) {
 }
 
 /* ***
+矢印
+*** */
+
+:root {
+    --logic-arrow-size: 1.5em;
+}
+.arrow-l2r {
+    position: relative;
+    margin-inline-end: var(--logic-arrow-size);
+}
+.arrow-l2r::after {
+    display: inline-block;
+    content: "";
+    background-size: contain;
+    inline-size: var(--logic-arrow-size);
+    block-size: var(--logic-arrow-size);
+    position: absolute;
+    background-image: url("figure/arrow-right.svg");
+    top: calc(50% - var(--logic-arrow-size) / 2);
+    right: calc(-1 * var(--logic-arrow-size) - .25em);
+}
+
+/* ***
 End of script
 *** */

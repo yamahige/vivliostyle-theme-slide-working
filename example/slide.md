@@ -79,7 +79,7 @@ v0
 
 ## 約物の前後の空白の詰め
 
-"「"や"（"といった約物が行頭・行末にきたり、連続する場合の空白の詰めを制御できます。
+"「"や"（"といった約物が行頭・行末にきたり連続したりする場合の空白の詰めを制御できます。
 スライドはテキストが短く箇条書きも多いので、行頭は揃ってる方がテキストのまとまりを見やすいでしょう。
 
 <div style="text-spacing-trim: space-all;">
@@ -141,7 +141,7 @@ CSSの名前付き文字列(named string<span class="fn">1.1. Named strings - CS
 
 ### 発表のタイトルやセクションの見出し
 
-発表タイトルには`h1`、セクションの見出しには`h2`という印(タグ)が付いています。`h2`見出しを、自動生成した番号付きで各スライドの`@top-right`マージンに表示するとします。
+発表タイトルには`h1`、セクションの見出しには`h2`というHTML既定の印(タグ)を付けますね。`h2`見出しを、自動生成した番号付きで各スライドの`@top-right`マージンに表示するとします。
 
 `string-set`プロパティを使って、`h2`の前に自動生成した番号に、例えば`chapter-number`という名前を、テキストに`chapter`という名前を付けます。
 
@@ -161,13 +161,135 @@ h2 {
 }
 ```
 
-### 発表のタイトル、日付、発表者、研究会名など
+### 日付、発表者、研究会名など
 
-「発表タイトル」といった
+「研究会名」といったテキストにはHTML既定の印（タグ）がありません。そこで、印の工夫から始めます。
+
+Vivliostyle用のMarkdownとして開発されている、VFM (Vivliostyle Flavored Markdown)<span class="fn">[Vivliostyleに特化したMarkdown - VFMの使い方](https://gihyo.jp/article/2024/03/vivliostyle-02)</span>は、Markdownの見出しに応じてsection要素を生成して階層化してくれます<span class="fn">[セクション分け - Sectionization](https://gihyo.jp/article/2024/03/vivliostyle-02#gh9ILAwmxz)</span>。これを利用します。
+
+
+#### 印を付ける
+
+VFMで次のように書いて、「著者」という見出しを用意して`author`クラスを設定すると、次のようなHTMLが生成されます:
+
+<div style="display: flex; flex-direction: row; column-gap: 1em;">
+
+<div class="arrow-l2r">
+
+```md
+### 著者{.author}
+
+yamahige
+```
+</div>
+
+```html
+<section class="level3" aria-labelledby="著者">
+  <h3 class="author" id="著者">著者</h3>
+  <p>yamahige</p>
+</section>
+```
+
+</div>
+
+`"yamahige"`に印が付きました。`:has(> .author) > p`というセレクターで取り出せます。
+
+#### 名前を付ける{.new-slide}
+
+ここで次のようなCSSを適用すると、`"yamahige"`に`string-author`という名前が付きます。
+
+```css
+h2.author {
+    display: none;
+}
+:has(> .author) > p:first-of-type {
+    string-set: string-author content();
+}
+```
+
+`p:first-of-type`は著者が複数いる場合を想定しています。
+
+#### フッターに生成する
+
+`@bottom-center`マージンに著者名を表示します。
+
+```css
+@page {
+    @bottom-center { content: string(string-author); }
+}
+```
+
+### 日付、発表者、研究会名など - 他の方法
+
+「研究会名」といったテキストにはHTML既定の印（タグ）がありません。そこで、印の工夫から始めます。
+
+
+
+#### 印を付ける
+
+VFMで次のように書いて、`@bottom-center`マージンに表示したい項目に`bottom-center`クラスを設定すると、次のようなHTMLが生成されます:
+
+<div style="display: flex; flex-direction: row; column-gap: 1em;">
+
+<div class="arrow-l2r">
+
+```md
+### 著者{.bottom-center}
+
+yamahige
+```
+</div>
+
+```html
+<section class="level3" aria-labelledby="著者">
+  <h3 class="bottom-center" id="著者">著者</h3>
+  <p>yamahige</p>
+</section>
+```
+
+</div>
+
+`"yamahige"`に印が付きました。`:has(> .bottom-center) > p`というセレクターで取り出せます。
+
+#### 名前を付ける{.new-slide}
+
+ここで次のようなCSSを適用すると、`"yamahige"`に`string-bottom-center`という名前が付きます。
+
+```css
+:has(> .bottom-center) > p:first-of-type {
+    string-set: bottom-center content();
+}
+```
+
+`p:first-of-type`は最初の段落を選ぶという意味です。
+
+#### フッターに生成する
+
+`@bottom-center`マージンに表示します。
+
+```css
+@page {
+    @bottom-center { content: string(string-bottom-center); }
+}
+```
+
+この方法だと、CSSを見ただけでは、フッター中央に何が表示されるか分かりません。何を表示するかはMarkdown側で指定します。これはMarkdown側にスタイル情報を含めることを意味します。
 
 ### スライド番号 / 総スライド数
 
 各スライドに番号（ページ番号）があると、Q&Aでランダムアクセスしやすいです。また、総スライド数が表示されていると、発表者本人だけでなく座長や聴いてる人たちも安心です。
+
+スライド番号（ページ番号）や総スライド数（総ページ数）は、それぞれ`page`と`pages`カウンターに設定されています。
+
+そこで、CSSに次のように書くだけで、右下マージンに「スライド番号 / 総スライド数」が表示されます。
+
+```css
+@page {
+  @bottom-right {
+      content: counter(page) " / " counter(pages);
+  }
+}
+```
 
 ## 参考文献を脚注や文末脚注として表示できる
 
