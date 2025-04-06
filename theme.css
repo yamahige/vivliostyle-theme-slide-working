@@ -357,6 +357,14 @@ h4 + p {
 }
 
 /* ****
+コード
+**** */
+
+code {
+    background-color: lightgray;
+}
+
+/* ****
 URL
 **** */
 
