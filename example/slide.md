@@ -117,9 +117,9 @@ v1
     * 日付、発表者、研究会名など
 - 総スライド数を数えてくれて、その値を自動生成するテキストに含められます
 
-### CSSのマージン・ボックス
+### ヘッダー／フッターはCSSのマージン・ボックス
 
-ヘッダーやフッターを表示するには、CSSのマージン・ボックスを利用します。マージン・ボックスは、`@top-left`や`@bottom-right-corner`など、側面とコーナーの合計16個が定義されています<span class="fn">CSS Paged Media Module Level 3 - 5. Page-Margin Boxes https://www.w3.org/TR/css-page-3/#margin-boxes</span><span class="fn">CSS - @page - とほほのWWW入門 https://www.tohoho-web.com/css/rule/page.htm</span>。
+ヘッダーやフッターを表示するには、CSSのマージン・ボックスを利用します。マージン・ボックスは、`@top-left`や`@bottom-right-corner`など、側面とコーナーの合計16個の場所が定義されています<span class="fn">CSS Paged Media Module Level 3 - 5. Page-Margin Boxes https://www.w3.org/TR/css-page-3/#margin-boxes</span><span class="fn">CSS - @page - とほほのWWW入門 https://www.tohoho-web.com/css/rule/page.htm</span>。
 
 <div id="page-margin-table">
 
@@ -135,7 +135,9 @@ v1
 
 ### スライド本文のテキストを抜き出して表示
 
-CSSの名前付き文字列(named string<span class="fn">1.1. Named strings - CSS Generated Content for Paged Media Module https://www.w3.org/TR/css-gcpm-3/#named-strings</span>)という仕組みを使います。
+スライド本文から自動的に抜き出して表示できると、本文を修正したときの修正漏れを防げます。
+
+これには、CSSの名前付き文字列(named string<span class="fn">1.1. Named strings - CSS Generated Content for Paged Media Module https://www.w3.org/TR/css-gcpm-3/#named-strings</span>)という仕組みを使います。
 ざっくり言うと
 
 1. 抜き出したいテキストに印を付ける
@@ -151,7 +153,7 @@ CSSの名前付き文字列(named string<span class="fn">1.1. Named strings - CS
 
 発表タイトルには`h1`、セクションの見出しには`h2`というHTML既定の印(タグ)を付けますね。`h2`見出しを、自動生成した番号付きで各スライドの`@top-right`マージンに表示するとします。
 
-`string-set`プロパティを使って、`h2`の前に自動生成した番号に、例えば`chapter-number`という名前を、テキストに`chapter`という名前を付けます。
+`string-set`プロパティを使って、生成した番号に、例えば`chapter-number`という名前を、テキストに`chapter`という名前を付けます。
 
 ```css
 h2 {
@@ -161,7 +163,7 @@ h2 {
 
 `content(before)`は`h2`の`::before`疑似要素の内容を示します。`content()`は`content(text)`という意味で、`h2`のテキストを示します。
 
-そして、`@top-right`マージンの`content`プロパティの値で、`string`関数の中でこれらの名前を使ってテキストを参照します。
+そして、`@top-right`マージンの`content`プロパティの値で、`string`関数の中でこれらの名前を使ってテキストを参照します。`first`によって、そのスライド中の最初の見出しを使います。
 
 ```css
 @page {
@@ -227,7 +229,7 @@ h2.conference {
 
 ### 日付、発表者、研究会名など - その2
 
-「研究会名」を識別するような印（タグ）を前提としない、印の工夫から始めます。
+「研究会名」を識別する印（タグ）を前提としないような、印の工夫から始めます。
 
 #### 印を付ける
 
@@ -329,7 +331,18 @@ VFMで次のように書いて、`@bottom-center`マージンに表示したい�
 - このスライドのタイトルは1行に収まらないくらい長いので自動的に改行しています。自然なところで改行してるように見えますし、ほぼ同じ長さの2行になっています。
 - しかし、Markdownを見るとタイトルには改行が入っていません。
 
-<div style="word-break: auto-phrase; text-wrap: balance; font-size: xx-large; font-weight: bold; inline-size: 80%; margin-inline: auto; text-align: center;">Markdownでスライドを書いてVivliostyleで組んでプレゼン</div>
+<div style="display: flex; flex-direction: column; column-gap: 1em;">
+
+<div class="arrow-t2b">
+
+```md
+# Markdownでスライドを書いてVivliostyleで組んでプレゼン #
+```
+</div>
+
+<div style="word-break: auto-phrase; text-wrap: balance; font-size: large; font-weight: bold; inline-size: 80%; margin-inline: auto; text-align: center;">Markdownでスライドを書いてVivliostyleで組んでプレゼン</div>
+
+</div>
 
 CSSで次の設定を使うと、これを実現できます。
 
