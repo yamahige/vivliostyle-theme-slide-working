@@ -288,6 +288,7 @@ img {
 
 p:has(> img) {
     margin-block: 1em;
+    text-align: center;
 }
 
 /* ****
@@ -372,7 +373,7 @@ h4 + p {
     margin-inline-end: 1em;
 }
 .footnotes::before {
-    content: "文献";
+    content: "参考文献";
     display: block;
     margin-block-start: 1rem;
     margin-block-end: calc(var(--yh-theme--spacing-block) * 0.3);

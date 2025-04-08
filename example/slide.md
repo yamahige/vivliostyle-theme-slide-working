@@ -387,9 +387,12 @@ section:has(> h2.break-before-auto, > h3.break-before-auto) {
 
 アウトライン(`section`構造)に、「1.」、「1.1」などと番号が振ってあると、プレゼンのときに今どこの話をしてるのか、聞き手が理解する助けになります
 
-### プレゼンはVivliostyle Viewer、Vivliostyleプレビュー、またはPDFで{.break-before-auto}
+### プレゼンはVivliostyleやPDFで{.break-before-auto}
 
-「名前を付けて保存…」または「プリント…」からPDFで保存して、プレゼンはPDFでやります。「スライドショー」はありません。「アニメーション」はありません。「ノート」もありません…
+- Vivliostyle Viewerは、ズーム(拡大／縮小)や文字サイズの変更、ハイライトなどできます
+- PDFで保存してPDFでプレゼンすることもできます
+
+![](figure/highlight.png){style="block-size: 10lh; margin-inline: auto;"}
 
 <!--
 ## 長いセクション
