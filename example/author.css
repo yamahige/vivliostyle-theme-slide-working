@@ -31,24 +31,6 @@ table tbody tr:last-child td {
     border: thin solid gray;
 }
 
-/* ****
-注
-**** */
-
-.footnote-ref {
-    vertical-align: super;
-    text-decoration: none;
-}
-.footnote-ref::before {
-    content: "[";
-}
-.footnote-ref::after {
-    content: "]";
-}
-.footnote-ref > sup {
-    vertical-align: baseline;
-}
-
 /* ***
 配置
 *** */

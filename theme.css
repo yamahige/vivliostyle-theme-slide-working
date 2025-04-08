@@ -386,6 +386,17 @@ h4 + p {
 
 .footnote-ref {
     margin-inline-start: .2em;
+    vertical-align: super;
+    text-decoration: none;
+}
+.footnote-ref::before {
+    content: "[";
+}
+.footnote-ref::after {
+    content: "]";
+}
+.footnote-ref > sup {
+    vertical-align: baseline;
 }
 
 .footnotes {
