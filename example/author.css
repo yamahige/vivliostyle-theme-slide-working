@@ -35,27 +35,27 @@ table tbody tr:last-child td {
 配置
 *** */
 
-.--ys-slide-grid-2x2 {
+.grid-2x2 {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1em;
 }
-.--ys-slide-grid-2x2 > section:has(> h3) {
+.grid-2x2 > section:has(> h3) {
     break-before: avoid !important;
 }
-.--ys-slide-grid-2x2 h3 {
+.grid-2x2 h3 {
     counter-increment: subsection 0 !important;
 }
-.--ys-slide-grid-2x2 h3::before {
+.grid-2x2 h3::before {
     content: none !important;
 }
-.--ys-slide-grid-2x2 > section {
+.grid-2x2 > section {
     border: thick double darkorange;
     border-radius: .5em;
     position: relative;
     margin-block-start: 1em;
 }
-.--ys-slide-grid-2x2 > section > h3 {
+.grid-2x2 > section > h3 {
     position: absolute;
     top: -1.5em;
     left: 1em;

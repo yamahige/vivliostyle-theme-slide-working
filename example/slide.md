@@ -413,7 +413,7 @@ CSSで次のような配置ができます。先に表示結果を、次にソ�
 
 ### 表示 ###
 
-<div class="--ys-slide-grid-2x2">
+<div class="grid-2x2">
 
 ### ポイント1
 
