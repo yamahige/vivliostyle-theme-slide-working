@@ -37,7 +37,12 @@
 }
 
 @page {
-    size: A5 landscape;
+    size: 216mm 162mm;
+    /*
+    a5 landscape 210mm 148mm
+    4:3 216mm 162mm
+    16:9 256mm 144mm
+    */
     margin-block-start: 2.5rem;
     margin-block-end: 2.5rem;
     margin-inline-start: 3rem;
@@ -183,16 +188,16 @@ h1 {
 スライド
 **** */
 
-.new-slide,
-section:has(> .new-slide),
+.break-before-page,
+section:has(> .break-before-page),
 section:has(> h2:not(.cover)),
 section:has(> h3:not(.conference, .author, .version-list, .version, .date)) {
     break-before: page;
     clear: both; /* スライド区切りをfloatの区切りに */
 }
 
-.keep-slide,
-section:has(> h2.keep-slide, > h3.keep-slide) {
+.break-before-auto,
+section:has(> h2.break-before-auto, > h3.break-before-auto) {
     break-before: auto;
 }
 

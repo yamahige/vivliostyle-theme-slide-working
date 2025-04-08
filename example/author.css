@@ -167,6 +167,18 @@ table.col-align-lll td:nth-child(2) {
 }
 
 /* ***
+配置
+*** */
+
+.--ys-slide-grid-2x2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.--ys-slide-grid-2x2 > section > h3 {
+    break-before: avoid !important;
+}
+
+/* ***
 矢印
 *** */
 
