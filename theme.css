@@ -372,7 +372,7 @@ h4 + p {
     margin-inline-end: 1em;
 }
 .footnotes::before {
-    content: "";
+    content: "文献";
     display: block;
     margin-block-start: 1rem;
     margin-block-end: calc(var(--yh-theme--spacing-block) * 0.3);
