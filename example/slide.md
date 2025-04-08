@@ -256,7 +256,7 @@ h2.conference {
 
 #### 印を付ける
 
-VFMで次のように書いて、`@bottom-center`マージンに表示したい項目に`bottom-center`クラスを設定すると、次のようなHTMLが生成されます（`aria-labelledby`などを省略してます）:
+VFMで次のように書いて、`@bottom-center`マージンに表示したい項目に`bottom-center`クラスを設定すると、次のようなHTMLが生成されます（`aria-labelledby`属性などを省略してます）:
 
 <div style="display: flex; flex-direction: row; column-gap: 1em;">
 
@@ -302,9 +302,9 @@ VFMで次のように書いて、`@bottom-center`マージンに表示したい�
 
 ### 日付、発表者、研究会名など - 検討
 
-印を付けるために見出し`##`や`###`に`.conference`クラスを設定して利用しました。このことを覚えておいて、後で説明する[スライド区切りの設定](#breaking-slide)などで**必ず反映**します。
+印を付けるために見出し`##`や`###`に`.conference`クラスを設定して利用しました。このことを覚えておいて、後で説明する[スライド区切りの設定](#breaking-slide)などに**必ず反映**します。
 
-その1方式とその2方式、どちらがよいかは運用しだいでしょうか。
+その1方式とその2方式、どちらがよいかは意見が分かれるところでしょう。
 
 #### その1方式
 
@@ -338,13 +338,15 @@ VFMで次のように書いて、`@bottom-center`マージンに表示したい�
 
 #### 各スライドの下部に表示する例
 
-- Wordでは、脚注や文末脚注の参照を挿入する場所にカーソルを置いて「挿入」-「脚注…」を選びます 。脚注や文末脚注は、後から相互に変換できます<span class="fn">[脚注と文末脚注を挿入する Microsoftサポート](https://support.microsoft.com/ja-jp/office/%E8%84%9A%E6%B3%A8%E3%81%A8%E6%96%87%E6%9C%AB%E8%84%9A%E6%B3%A8%E3%82%92%E6%8C%BF%E5%85%A5%E3%81%99%E3%82%8B-61f3fb1a-4717-414c-9a8f-015a5f3ff4cb)</span>。
-- ちなみに、CSS (Cascading Style Sheets)でも脚注を実現できます<span class="fn">CSS Generated Content for Paged Media Module 2. Footnotes [https://www.w3.org/TR/css-gcpm-3/#footnotes](https://www.w3.org/TR/css-gcpm-3/#footnotes)</span>。
+> Wordでは、脚注や文末脚注の参照を挿入する場所にカーソルを置いて「挿入」-「脚注…」を選びます 。脚注や文末脚注は、後から相互に変換できます<span class="fn">[脚注と文末脚注を挿入する Microsoftサポート](https://support.microsoft.com/ja-jp/office/%E8%84%9A%E6%B3%A8%E3%81%A8%E6%96%87%E6%9C%AB%E8%84%9A%E6%B3%A8%E3%82%92%E6%8C%BF%E5%85%A5%E3%81%99%E3%82%8B-61f3fb1a-4717-414c-9a8f-015a5f3ff4cb)</span>。
+> 
+> ちなみに、CSS (Cascading Style Sheets)でも脚注を実現できます<span class="fn">CSS Generated Content for Paged Media Module 2. Footnotes [https://www.w3.org/TR/css-gcpm-3/#footnotes](https://www.w3.org/TR/css-gcpm-3/#footnotes)</span>。
 
 #### 最後のスライドにまとめて表示する例
 
-- Wordでは、脚注や文末脚注の参照を挿入する場所にカーソルを置いて「挿入」-「脚注…」を選びます 。脚注や文末脚注は、後から相互に変換できます[^word]。
-- ちなみに、CSS (Cascading Style Sheets)でも脚注を実現できます[^CSS]。
+> Wordでは、脚注や文末脚注の参照を挿入する場所にカーソルを置いて「挿入」-「脚注…」を選びます 。脚注や文末脚注は、後から相互に変換できます[^word]。
+> 
+> ちなみに、CSS (Cascading Style Sheets)でも脚注を実現できます[^CSS]。
 
 [^word]: [脚注と文末脚注を挿入する Microsoftサポート](https://support.microsoft.com/ja-jp/office/%E8%84%9A%E6%B3%A8%E3%81%A8%E6%96%87%E6%9C%AB%E8%84%9A%E6%B3%A8%E3%82%92%E6%8C%BF%E5%85%A5%E3%81%99%E3%82%8B-61f3fb1a-4717-414c-9a8f-015a5f3ff4cb)
 [^CSS]: CSS Generated Content for Paged Media Module 2. Footnotes [https://www.w3.org/TR/css-gcpm-3/#footnotes](https://www.w3.org/TR/css-gcpm-3/#footnotes)
@@ -389,10 +391,14 @@ section:has(> h2.break-before-auto, > h3.break-before-auto) {
 
 ### プレゼンはVivliostyleやPDFで{.break-before-auto}
 
-- Vivliostyle Viewerは、ズーム(拡大／縮小)や文字サイズの変更、ハイライトなどできます
-- PDFで保存してPDFでプレゼンすることもできます
+![](figure/highlight.png){.float-inline-end style="block-size: 10lh;"}
 
-![](figure/highlight.png){style="block-size: 10lh; margin-inline: auto;"}
+Vivliostyle Viewerではズーム(拡大／縮小)したり文字サイズを変更したりハイライトしたりできます
+- ズームではスライド全体が拡大・縮小します
+- 文字サイズの変更では、そのサイズで再レイアウトされ、スライド数が増えたり減ったりすることがあります
+- 図は、文字サイズに基づいて`block-size: 2em;`などと指定していると、一緒にサイズが変わります。`block-size: 320px;`などの指定では、サイズは変わりません。
+
+PDFで保存してPDFでプレゼンすることもできます
 
 <!--
 ## 長いセクション
@@ -403,7 +409,7 @@ section:has(> h2.break-before-auto, > h3.break-before-auto) {
 
 ## 2次元の配置
 
-CSSは次のような配置が得意です。表示を先に、ソースのMarkdownを次のスライドで示します。
+CSSで次のような配置ができます。先に表示結果を、次にソースのMarkdownを示します。
 
 ### 表示 ###
 
