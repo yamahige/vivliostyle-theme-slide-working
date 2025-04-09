@@ -32,7 +32,6 @@
     --yh-theme--spacing-block: calc(var(--yh-theme--line-height) * 1rem);
     margin-block: 0;
     --yh-theme--spacing-inline: min(2ch, 5vw);
-
     --yh-theme--slide-title-font-size: 1.2rem;
 }
 
@@ -83,6 +82,8 @@
     @bottom-right {
         content: counter(page) " / " counter(pages);
         max-width: 15%;
+        overflow: hidden;
+        white-space: nowrap;
         text-overflow: ellipsis;
     }
 }
@@ -271,7 +272,6 @@ ol > li {
 
 ul > li::marker,
 ol > li::marker {
-
 }
 
 /* ***
