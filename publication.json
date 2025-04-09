@@ -8,14 +8,8 @@
   "name": "Markdownでスライドを書いてVivliostyleで組んでプレゼン",
   "author": "yamahige",
   "inLanguage": "ja",
-  "dateModified": "2025-04-06T18:40:32.039Z",
+  "dateModified": "2025-04-09T16:02:47.990Z",
   "readingOrder": [
-    {
-      "url": "index.html",
-      "name": "Table of Contents",
-      "rel": "contents",
-      "type": "LinkedResource"
-    },
     {
       "url": "example/slide.html",
       "name": "Markdownでスライドを書いてVivliostyleで組んでプレゼン"

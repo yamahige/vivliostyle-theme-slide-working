@@ -47,7 +47,7 @@
     </section>
     <section class="level2" aria-labelledby="はじめに">
       <h2 id="はじめに">はじめに</h2>
-      <p>この記事では、研究会発表のスライドを想定して、HTML+CSSで作るスライドいいところをあげてみます。</p>
+      <p>研究会発表のスライドを想定して、HTML+CSSのスライドのいいところをあげてみます。</p>
       <ul>
         <li>学会の研究会での発表ならば、元になる論文／予稿があって、テキストで主張する表現はできています</li>
         <li>ヘッダーやフッターに挿入する項目（「日付」、「研究会名」、など）や書式（「スライド番号/総スライド数」、など）が研究室などで指導されていたりします</li>
@@ -57,7 +57,7 @@
       <h2 id="テキストが図を回り込んでくれる">テキストが図を回り込んでくれる</h2>
       <ul>
         <li>HTML+CSSでは、テキストが図を回り込むのが普通です。</li>
-        <li>なお、改行の位置で「あれ？」と思ったみなさん、自動的な改行の位置を調整できるのです。次のスライドで説明します。</li>
+        <li>なお、改行の位置で「あれ？」と思ったみなさん、自動的な改行の位置を調整できるのです。<a href="#word-break">別のスライド</a>で説明します。</li>
         <li>色は匂へど散りぬるを我が世誰ぞ常ならむ有為の奥山今日越えて浅き夢見し酔ひもせず。色は匂へど散りぬるを我が世誰ぞ常ならむ有為の奥山今日越えて浅き夢見し酔ひもせず</li>
         <li>色は匂へど散りぬるを我が世誰ぞ常ならむ有為の奥山今日越えて浅き夢見し酔ひもせず。</li>
       </ul>
@@ -65,14 +65,14 @@
         <img src="figure/circle.svg" style="float: block-start inline-end; float-reference: page; inline-size: 20em;">
       </p>
     </section>
-    <section class="level2" aria-labelledby="改行位置の調整">
-      <h2 id="改行位置の調整">改行位置の調整</h2>
-      <p>自動的に折り返される改行の位置を調整できます。</p>
+    <section class="level2" aria-labelledby="word-break">
+      <h2 id="word-break">改行位置の調整</h2>
+      <p>CSSでは、自動的に折り返される改行の位置を次のように調整できます。</p>
       <div style="word-break: normal;">
         <p>
           <img src="figure/figure.svg" style="float: inline-end; inline-size: 17em;">
         </p>
-        <p><code>word-break: normal;</code> 既定の規則で改行します:</p>
+        <p><code>word-break: normal;</code>という設定では、既定の規則で改行します:</p>
         <ul>
           <li>HTML+CSSでは、テキストが図を回り込むのが普通です。</li>
           <li>色は匂へど散りぬるを我が世誰ぞ常ならむ有為の奥山今日越えて浅き夢見し酔ひもせず。</li>
@@ -82,21 +82,35 @@
         <p>
           <img src="figure/figure.svg" style="clear: both; float: inline-end; inline-size: 17em;">
         </p>
-        <p><code>word-break: auto-phrase;</code> 日本語として、より自然な位置で改行します:</p>
+        <p><code>word-break: auto-phrase;</code>という設定では、日本語として、より自然な位置で改行します。これは好みが分かれるでしょう:</p>
         <ul>
           <li>HTML+CSSでは、テキストが図を回り込むのが普通です。</li>
           <li>色は匂へど散りぬるを我が世誰ぞ常ならむ有為の奥山今日越えて浅き夢見し酔ひもせず。</li>
-          <li>ことばが古いせいか、「いろは歌」ではそうでもない…</li>
         </ul>
       </div>
-      <p>このスライド全体には<code>word-break: auto-phrase;</code>と設定されています。</p>
+      <p>なお、このスライド全体には、試しに<code>word-break: auto-phrase;</code>と設定しています。</p>
+    </section>
+    <section class="level2" aria-labelledby="文字数が均等になるように改行してくれる">
+      <h2 id="文字数が均等になるように改行してくれる">文字数が均等になるように改行してくれる</h2>
+      <ul>
+        <li>このスライドのタイトルは1行に収まらないくらい長いので自動的に改行しています。自然なところで改行してるように見えますし、ほぼ同じ長さの2行になっています。</li>
+        <li>しかし、Markdownを見るとタイトルには改行が入っていません。</li>
+      </ul>
+      <div style="display: flex; flex-direction: column; column-gap: 1em; inline-size: 50%;">
+        <div class="arrow-t2b">
+          <pre class="language-md"><code class="language-md"><span class="token title important"><span class="token punctuation">#</span> Markdownでスライドを書いてVivliostyleで組んでプレゼン <span class="token punctuation">#</span></span></code></pre>
+        </div>
+        <div style="word-break: auto-phrase; text-wrap: balance; font-size: large; font-weight: bold; inline-size: 80%; margin-inline: auto; text-align: center;">Markdownでスライドを書いてVivliostyleで組んでプレゼン</div>
+      </div>
+      <p>CSSで次の設定を使うと、これを実現できます。</p>
+      <ul>
+        <li><code>word-break: auto-phrase;</code>で、ことばとして自然なところで改行します。</li>
+        <li><code>text-wrap: balance;</code>で、行の文字数が均等になるように改行します。</li>
+      </ul>
     </section>
     <section class="level2" aria-labelledby="約物の前後の空白の詰め">
       <h2 id="約物の前後の空白の詰め">約物の前後の空白の詰め</h2>
-      <p>
-        "「"や"（"といった約物が行頭・行末にきたり連続したりする場合の空白の詰めを制御できます。
-        スライドはテキストが短く箇条書きも多いので、行頭は揃ってる方がテキストのまとまりを見やすいでしょう。
-      </p>
+      <p>"「"や"（"といった約物が行頭・行末にきたり連続したりする場合の空白の詰めを制御できます。</p>
       <div style="text-spacing-trim: space-all;">
         <p><code>text-spacing-trim: space-all;</code>で、約物の空白を詰めません。</p>
         <ul>
@@ -111,6 +125,7 @@
           <li>ヘッダーやフッターに挿入する項目（「日付」、「研究会名」、など）が研究室などで指導されていたりします</li>
         </ul>
       </div>
+      <p>スライドはテキストが短く箇条書きも多いので、行頭は揃ってる方がまとまって見えてよいかもしれません。</p>
       <p>このスライド全体には<code>text-spacing-trim: trim-both;</code>と設定されています</p>
     </section>
     <section class="level2" aria-labelledby="ヘッダーとフッター">
@@ -124,9 +139,9 @@
         </li>
         <li>総スライド数を数えてくれて、その値を自動生成するテキストに含められます</li>
       </ul>
-      <section class="level3" aria-labelledby="cssのマージンボックス">
-        <h3 id="cssのマージンボックス">CSSのマージン・ボックス</h3>
-        <p>ヘッダーやフッターを表示するには、CSSのマージン・ボックスを利用します。マージン・ボックスは、<code>@top-left</code>や<code>@bottom-right-corner</code>など、側面とコーナーの合計16個が定義されています<span class="fn">CSS Paged Media Module Level 3 - 5. Page-Margin Boxes <a href="https://www.w3.org/TR/css-page-3/#margin-boxes">https://www.w3.org/TR/css-page-3/#margin-boxes</a></span><span class="fn">CSS - @page - とほほのWWW入門 <a href="https://www.tohoho-web.com/css/rule/page.htm">https://www.tohoho-web.com/css/rule/page.htm</a></span>。</p>
+      <section class="level3" aria-labelledby="ヘッダーフッターはcssのマージンボックス">
+        <h3 id="ヘッダーフッターはcssのマージンボックス">ヘッダー／フッターはCSSのマージン・ボックス</h3>
+        <p>ヘッダーやフッターを表示するには、CSSのマージン・ボックスを利用します。マージン・ボックスは、<code>@top-left</code>や<code>@bottom-right-corner</code>など、側面とコーナーの合計16個の場所が定義されています<span class="fn">CSS Paged Media Module Level 3 - 5. Page-Margin Boxes <a href="https://www.w3.org/TR/css-page-3/#margin-boxes">https://www.w3.org/TR/css-page-3/#margin-boxes</a></span><span class="fn">CSS - @page - とほほのWWW入門 <a href="https://www.tohoho-web.com/css/rule/page.htm">https://www.tohoho-web.com/css/rule/page.htm</a></span>。</p>
         <div id="page-margin-table">
           <table>
             <thead>
@@ -180,8 +195,9 @@
       </section>
       <section class="level3" aria-labelledby="スライド本文のテキストを抜き出して表示">
         <h3 id="スライド本文のテキストを抜き出して表示">スライド本文のテキストを抜き出して表示</h3>
+        <p>スライド本文から所定のテキストを自動的に抜き出してヘッダーやフッターに表示できると、本文を修正したときの修正漏れを防げます。</p>
         <p>
-          CSSの名前付き文字列(named string<span class="fn">1.1. Named strings - CSS Generated Content for Paged Media Module <a href="https://www.w3.org/TR/css-gcpm-3/#named-strings">https://www.w3.org/TR/css-gcpm-3/#named-strings</a></span>)という仕組みを使います。
+          これには、CSSの名前付き文字列(named string<span class="fn">1.1. Named strings - CSS Generated Content for Paged Media Module <a href="https://www.w3.org/TR/css-gcpm-3/#named-strings">https://www.w3.org/TR/css-gcpm-3/#named-strings</a></span>)という仕組みを使います。
           ざっくり言うと
         </p>
         <ol>
@@ -198,12 +214,12 @@
       <section class="level3" aria-labelledby="発表のタイトルやセクションの見出し">
         <h3 id="発表のタイトルやセクションの見出し">発表のタイトルやセクションの見出し</h3>
         <p>発表タイトルには<code>h1</code>、セクションの見出しには<code>h2</code>というHTML既定の印(タグ)を付けますね。<code>h2</code>見出しを、自動生成した番号付きで各スライドの<code>@top-right</code>マージンに表示するとします。</p>
-        <p><code>string-set</code>プロパティを使って、<code>h2</code>の前に自動生成した番号に、例えば<code>chapter-number</code>という名前を、テキストに<code>chapter</code>という名前を付けます。</p>
+        <p><code>string-set</code>プロパティを使って、生成した番号に、例えば<code>chapter-number</code>という名前を、テキストに<code>chapter</code>という名前を付けます。</p>
         <pre class="language-css"><code class="language-css"><span class="token selector">h2</span> <span class="token punctuation">{</span>
     <span class="token property">string-set</span><span class="token punctuation">:</span> chapter-number <span class="token function">content</span><span class="token punctuation">(</span>before<span class="token punctuation">)</span><span class="token punctuation">,</span> chapter <span class="token function">content</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre>
         <p><code>content(before)</code>は<code>h2</code>の<code>::before</code>疑似要素の内容を示します。<code>content()</code>は<code>content(text)</code>という意味で、<code>h2</code>のテキストを示します。</p>
-        <p>そして、<code>@top-right</code>マージンの<code>content</code>プロパティの値で、<code>string</code>関数の中でこれらの名前を使ってテキストを参照します。</p>
+        <p>そして、<code>@top-right</code>マージンの<code>content</code>プロパティの値で、<code>string</code>関数の中でこれらの名前を使ってテキストを参照します。<code>first</code>によって、そのスライド中の最初の見出しを使います。</p>
         <pre class="language-css"><code class="language-css"><span class="token atrule"><span class="token rule">@page</span></span> <span class="token punctuation">{</span>
     <span class="token atrule"><span class="token rule">@top-right</span></span> <span class="token punctuation">{</span> <span class="token property">content</span><span class="token punctuation">:</span> <span class="token function">string</span><span class="token punctuation">(</span>chapter-number<span class="token punctuation">,</span> first<span class="token punctuation">)</span> <span class="token string">" "</span> <span class="token function">string</span><span class="token punctuation">(</span>chapter<span class="token punctuation">,</span> first<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">}</span>
 <span class="token punctuation">}</span></code></pre>
@@ -229,7 +245,7 @@
           <p><code>"第3回 プレゼン研究発表会"</code>に印が付きました。<code>:has(> .conference) > p</code>というセレクターで取り出せます。</p>
         </section>
         <section class="level4" aria-labelledby="名前を付ける">
-          <h4 class="new-slide" id="名前を付ける">名前を付ける</h4>
+          <h4 class="break-before-page" id="名前を付ける">名前を付ける</h4>
           <p>ここで次のようなCSSを適用すると、<code>"第3回 プレゼン研究発表会"</code>に<code>string-conference</code>という名前が付きます。</p>
           <pre class="language-css"><code class="language-css"><span class="token selector">h2<span class="token class">.conference</span></span> <span class="token punctuation">{</span>
     <span class="token property">display</span><span class="token punctuation">:</span> none<span class="token punctuation">;</span>
@@ -248,25 +264,25 @@
       </section>
       <section class="level3" aria-labelledby="日付発表者研究会名など---その2">
         <h3 id="日付発表者研究会名など---その2">日付、発表者、研究会名など - その2</h3>
-        <p>「研究会名」を識別するような印（タグ）を前提としない、印の工夫から始めます。</p>
+        <p>「研究会名」を識別する印（タグ）を前提としないような、印の工夫から始めます。</p>
         <section class="level4" aria-labelledby="印を付ける-1">
           <h4 id="印を付ける-1">印を付ける</h4>
-          <p>VFMで次のように書いて、<code>@bottom-center</code>マージンに表示したい項目に<code>bottom-center</code>クラスを設定すると、次のようなHTMLが生成されます:</p>
+          <p>VFMで次のように書いて、<code>@bottom-center</code>マージンに表示したい項目に<code>bottom-center</code>クラスを設定すると、次のようなHTMLが生成されます（<code>aria-labelledby</code>属性などを省略してます）:</p>
           <div style="display: flex; flex-direction: row; column-gap: 1em;">
             <div class="arrow-l2r">
-              <pre class="language-md"><code class="language-md"><span class="token title important"><span class="token punctuation">###</span> 研究会名{.bottom-center}</span>
+              <pre class="language-md"><code class="language-md"><span class="token title important"><span class="token punctuation">###</span> 研究会名{.conference .bottom-center}</span>
 
 第3回 プレゼン研究発表会</code></pre>
             </div>
-            <pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>section</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>level3<span class="token punctuation">"</span></span> <span class="token attr-name">aria-labelledby</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>研究会名<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>h3</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>bottom-center<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>研究会名<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>研究会名<span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span>h3</span><span class="token punctuation">></span></span>
+            <pre class="language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>section</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>h3</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>bottom-center<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>研究会名<span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span>h3</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>p</span><span class="token punctuation">></span></span>第3回 プレゼン研究発表会<span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span>p</span><span class="token punctuation">></span></span>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span>section</span><span class="token punctuation">></span></span></code></pre>
           </div>
           <p><code>"第3回 プレゼン研究発表会"</code>に印が付きました。<code>:has(> .bottom-center) > p</code>というセレクターで取り出せます。</p>
         </section>
         <section class="level4" aria-labelledby="名前を付ける-1">
-          <h4 class="new-slide" id="名前を付ける-1">名前を付ける</h4>
+          <h4 class="break-before-page" id="名前を付ける-1">名前を付ける</h4>
           <p>ここで次のようなCSSを適用すると、<code>"第3回 プレゼン研究発表会"</code>に<code>string-bottom-center</code>という名前が付きます。</p>
           <pre class="language-css"><code class="language-css"><span class="token selector"><span class="token pseudo-class">:has</span><span class="token punctuation">(</span><span class="token combinator">></span> <span class="token class">.bottom-center</span><span class="token punctuation">)</span> <span class="token combinator">></span> p<span class="token pseudo-class">:first-of-type</span></span> <span class="token punctuation">{</span>
     <span class="token property">string-set</span><span class="token punctuation">:</span> bottom-center <span class="token function">content</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
@@ -282,21 +298,34 @@
       </section>
       <section class="level3" aria-labelledby="日付発表者研究会名など---検討">
         <h3 id="日付発表者研究会名など---検討">日付、発表者、研究会名など - 検討</h3>
-        <p>印を付けるために見出し<code>##</code>や<code>###</code>に<code>.conference</code>クラスを設定して利用しました。このことを覚えておいて、スライド区切りの設定などで<strong>必ず反映</strong>します。</p>
-        <p>その1方式とその2方式、どちらがよいかは運用しだいでしょうか。</p>
-        <section class="level4" aria-labelledby="その1方式">
-          <h4 id="その1方式">その1方式</h4>
+        <section class="level4" aria-labelledby="印と見出し">
+          <h4 id="印と見出し">印と見出し</h4>
+          <p>印を付けるために見出し<code>##</code>や<code>###</code>に<code>.conference</code>クラスを設定して利用しました。</p>
           <ul>
-            <li>Markdownを見ただけでは、フッター中央に何が表示されるか分かりません。何を表示するかはCSS側で決めます。</li>
-            <li>CSSには<code>.conference</code>(を直下に持つ<code>section</code>の最初の<code>p</code>)をフッター中央に表示すると書いてあります。<code>.conference</code>はMarkdown(というかHTML)側が勝手に決めた印(クラス)ですが、CSSはこれに依存しています。</li>
+            <li>印に見出しを利用すると、Markdownエディターのアウトライン表示に印が表示されます</li>
+            <li>このことを覚えておいて、後で説明する<a href="#breaking-slide">スライド区切りの設定</a>などに<strong>必ず反映</strong>します</li>
           </ul>
+          <p>Markdownエディターでのアウトライン表示にこだわらなければ、その1方式のMarkdownで次のように書いて印を付けられます。</p>
+          <pre class="language-html"><code class="language-html">これは<span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>span</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>conference<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>プレゼン学会 第4回研究発表会<span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span>span</span><span class="token punctuation">></span></span>で発表したものです。</code></pre>
         </section>
-        <section class="level4" aria-labelledby="その2方式">
-          <h4 id="その2方式">その2方式</h4>
-          <ul>
-            <li>CSSを見ただけでは、フッター中央に何が表示されるか分かりません。何を表示するかはMarkdown側で<code>.bottom-center</code>クラスを指定して決めます。</li>
-            <li>これはMarkdown側にスタイル情報を含めることを意味します。</li>
-          </ul>
+        <section class="level4" aria-labelledby="方式の比較">
+          <h4 class="break-before-page" id="方式の比較">方式の比較</h4>
+          <p>その1方式とその2方式、どちらがよいかは意見が分かれるところでしょう。</p>
+          <section class="level5" aria-labelledby="その1方式">
+            <h5 id="その1方式">その1方式</h5>
+            <ul>
+              <li>Markdownを見ただけでは、フッター中央に何が表示されるか分かりません。何を表示するかはCSS側で決めます。</li>
+              <li>CSSには<code>.conference</code>(を直下に持つ<code>section</code>の最初の<code>p</code>)をフッター中央に表示すると書いてあります。<code>.conference</code>はMarkdown（というかHTML）側が決めた印（クラス）ですが、CSS側はこれを前提にしています。</li>
+              <li>このCSSをたまたま見つけてスタイルを気に入った発表者が、発表者名をフッター中央に表示したいと思ったら、<strong>発表者名</strong>に<code>.conference</code>クラスを設定するでしょう。</li>
+            </ul>
+          </section>
+          <section class="level5" aria-labelledby="その2方式">
+            <h5 id="その2方式">その2方式</h5>
+            <ul>
+              <li>CSSを見ただけでは、フッター中央に何が表示されるか分かりません。何を表示するかはMarkdown側で<code>.bottom-center</code>クラスを指定して決めます。</li>
+              <li>これはMarkdown側にスタイル情報を含めることを意味します。</li>
+            </ul>
+          </section>
         </section>
       </section>
       <section class="level3" aria-labelledby="スライド番号--総スライド数">
@@ -316,201 +345,142 @@
       <p>参考文献を脚注で、各スライドの下部に表示することがあります。該当箇所に脚注参照(footnote call)を挿入して、脚注本体をスライド下部に表示する（脚注）か、最後のスライドにまとめて表示（文末脚注）します。</p>
       <section class="level4" aria-labelledby="各スライドの下部に表示する例">
         <h4 id="各スライドの下部に表示する例">各スライドの下部に表示する例</h4>
-        <ul>
-          <li>Wordでは、脚注や文末脚注の参照を挿入する場所にカーソルを置いて「挿入」-「脚注…」を選びます 。脚注や文末脚注は、後から相互に変換できます<span class="fn"><a href="https://support.microsoft.com/ja-jp/office/%E8%84%9A%E6%B3%A8%E3%81%A8%E6%96%87%E6%9C%AB%E8%84%9A%E6%B3%A8%E3%82%92%E6%8C%BF%E5%85%A5%E3%81%99%E3%82%8B-61f3fb1a-4717-414c-9a8f-015a5f3ff4cb">脚注と文末脚注を挿入する Microsoftサポート</a></span>。</li>
-          <li>ちなみに、CSS (Cascading Style Sheets)でも脚注を実現できます<span class="fn">CSS Generated Content for Paged Media Module 2. Footnotes <a href="https://www.w3.org/TR/css-gcpm-3/#footnotes">https://www.w3.org/TR/css-gcpm-3/#footnotes</a></span>。</li>
-        </ul>
+        <blockquote>
+          <p>Wordでは、脚注や文末脚注の参照を挿入する場所にカーソルを置いて「挿入」-「脚注…」を選びます 。脚注や文末脚注は、後から相互に変換できます<span class="fn"><a href="https://support.microsoft.com/ja-jp/office/%E8%84%9A%E6%B3%A8%E3%81%A8%E6%96%87%E6%9C%AB%E8%84%9A%E6%B3%A8%E3%82%92%E6%8C%BF%E5%85%A5%E3%81%99%E3%82%8B-61f3fb1a-4717-414c-9a8f-015a5f3ff4cb">脚注と文末脚注を挿入する Microsoftサポート</a></span>。</p>
+          <p>ちなみに、CSS (Cascading Style Sheets)でも脚注を実現できます<span class="fn">CSS Generated Content for Paged Media Module 2. Footnotes <a href="https://www.w3.org/TR/css-gcpm-3/#footnotes">https://www.w3.org/TR/css-gcpm-3/#footnotes</a></span>。</p>
+        </blockquote>
       </section>
       <section class="level4" aria-labelledby="最後のスライドにまとめて表示する例">
         <h4 id="最後のスライドにまとめて表示する例">最後のスライドにまとめて表示する例</h4>
-        <ul>
-          <li>Wordでは、脚注や文末脚注の参照を挿入する場所にカーソルを置いて「挿入」-「脚注…」を選びます 。脚注や文末脚注は、後から相互に変換できます<a id="fnref1" href="#fn1" class="footnote-ref" role="doc-noteref"><sup>1</sup></a>。</li>
-          <li>ちなみに、CSS (Cascading Style Sheets)でも脚注を実現できます<a id="fnref2" href="#fn2" class="footnote-ref" role="doc-noteref"><sup>2</sup></a>。</li>
-        </ul>
+        <blockquote>
+          <p>Wordでは、脚注や文末脚注の参照を挿入する場所にカーソルを置いて「挿入」-「脚注…」を選びます 。脚注や文末脚注は、後から相互に変換できます<a id="fnref1" href="#fn1" class="footnote-ref" role="doc-noteref"><sup>1</sup></a>。</p>
+          <p>ちなみに、CSS (Cascading Style Sheets)でも脚注を実現できます<a id="fnref2" href="#fn2" class="footnote-ref" role="doc-noteref"><sup>2</sup></a>。</p>
+        </blockquote>
       </section>
     </section>
-    <section class="level2" aria-labelledby="適切なところで改行してくれる">
-      <h2 id="適切なところで改行してくれる">適切なところで改行してくれる</h2>
-      <ul>
-        <li>このスライドのタイトルは1行に収まらないくらい長いので自動的に改行しています。自然なところで改行してるように見えますし、ほぼ同じ長さの2行になっています。</li>
-        <li>しかし、Markdownを見るとタイトルには改行が入っていません。</li>
-      </ul>
-      <div style="word-break: auto-phrase; text-wrap: balance; font-size: xx-large; font-weight: bold; inline-size: 80%; margin-inline: auto; text-align: center;">Markdownでスライドを書いてVivliostyleで組んでプレゼン</div>
-      <p>CSSで次の設定を使うと、これを実現できます。</p>
-      <ul>
-        <li><code>word-break: auto-phrase;</code>で、ことばとして自然なところで改行します。</li>
-        <li><code>text-wrap: balance;</code>で、行の文字数が均等になるように改行します。</li>
-      </ul>
-    </section>
-    <section class="level2" aria-labelledby="スライドとしての基本的なスタイル設定">
-      <h2 id="スライドとしての基本的なスタイル設定">スライドとしての基本的なスタイル設定</h2>
-      <p>「A4◯◯枚の論文」ではなく「プレゼンのスライド」であるために、以下のようなお膳立てが必要です。</p>
-      <section class="level3" aria-labelledby="とでスライドを区切る">
-        <h3 id="とでスライドを区切る"><code>##</code>と<code>###</code>でスライドを区切る</h3>
+    <section class="level2" aria-labelledby="スライドとしての基本的なスタイル設定とプレゼン操作">
+      <h2 id="スライドとしての基本的なスタイル設定とプレゼン操作">スライドとしての基本的なスタイル設定とプレゼン操作</h2>
+      <p>「A4の論文の印刷」ではなく「プレゼンのスライド」であるために、以下のようなお膳立てが必要です。</p>
+      <section class="level3" aria-labelledby="用紙サイズをa5横くらいに設定">
+        <h3 class="break-before-auto" id="用紙サイズをa5横くらいに設定">用紙サイズをA5横くらいに設定</h3>
+        <p>A5横を基本に4:3や16:9になるように調整すると、見出しなどの既定の文字サイズがほどよい大きさになると思います。</p>
+        <pre class="language-css"><code class="language-css"><span class="token atrule"><span class="token rule">@page</span></span> <span class="token punctuation">{</span>
+    <span class="token property">size</span><span class="token punctuation">:</span> A5 landscape<span class="token punctuation">;</span> <span class="token comment">/* 210mm 148mm */</span>
+    <span class="token comment">/* size: 216mm 162mm; 4:3 */</span>
+    <span class="token comment">/* size: 256mm 144mm; 16:9 */</span>
+<span class="token punctuation">}</span></code></pre>
+      </section>
+      <section class="level3" aria-labelledby="breaking-slide">
+        <h3 id="breaking-slide"><code>##</code>と<code>###</code>でスライドを区切る</h3>
         <ul>
-          <li><code>##</code>(HTMLの<code>h2</code>)と<code>###</code>(HTMLの<code>h3</code>)を既定のスライド区切りにしておきます
+          <li><code>##</code>(HTMLの<code>h2</code>)に加えて<code>###</code>(HTMLの<code>h3</code>)くらいまでを既定のスライド区切りにしておきます
             <ul>
               <li>CSSとしては、<strong>それらを直下に持つ<code>section</code>要素</strong>を1枚のスライドに対応させます</li>
               <li>ヘッダー／フッターに表示するため導入した<code>.conference</code>クラスなど、便利な印を設定した<code>h2</code>や<code>h3</code>をスライドの区切りから除外します</li>
             </ul>
           </li>
-          <li>任意でスライをを区切るために<code>.new-slide</code>といったクラスを用意しておくと便利です</li>
-          <li><code>##</code>(HTMLの<code>h2</code>)と<code>###</code>(HTMLの<code>h3</code>)でスライドを区切らなくできるように<code>.keep-slide</code>といったクラスも用意しておくと便利です。VFMが生成する<code>section</code>に直接スタイル(<code>style</code>属性)を設定できないので、CSS側でこのようなお膳立てが必要です。</li>
-          <li>もっと深いレベルまで既定でスライド区切りにした方が使いやすいか、それとも<code>h2</code>まででよいかは、興味深いところです</li>
+          <li>任意でスライドを区切るためにの<code>.break-before-page</code>クラスと、スライド区切りを止める<code>.break-before-auto</code>といったクラスも用意します。VFMが生成する<code>section</code>要素に直接スタイル(<code>style</code>属性)を設定できないので、CSS側でこのようなお膳立てが必要です。</li>
         </ul>
-        <pre class="language-css"><code class="language-css"><span class="token selector"><span class="token class">.new-slide</span><span class="token punctuation">,</span> section<span class="token pseudo-class">:has</span><span class="token punctuation">(</span><span class="token combinator">></span> h2<span class="token punctuation">)</span><span class="token punctuation">,</span> section<span class="token pseudo-class">:has</span><span class="token punctuation">(</span><span class="token combinator">></span> h3<span class="token pseudo-class">:not</span><span class="token punctuation">(</span><span class="token class">.conference</span><span class="token punctuation">,</span> <span class="token class">.bottom-center</span><span class="token punctuation">)</span><span class="token punctuation">)</span></span> <span class="token punctuation">{</span>
+        <pre class="language-css"><code class="language-css"><span class="token selector"><span class="token class">.break-before-page</span><span class="token punctuation">,</span>
+section<span class="token pseudo-class">:has</span><span class="token punctuation">(</span><span class="token combinator">></span> h2<span class="token punctuation">)</span><span class="token punctuation">,</span> section<span class="token pseudo-class">:has</span><span class="token punctuation">(</span><span class="token combinator">></span> h3<span class="token pseudo-class">:not</span><span class="token punctuation">(</span><span class="token class">.conference</span><span class="token punctuation">,</span> <span class="token class">.bottom-center</span><span class="token punctuation">)</span><span class="token punctuation">)</span></span> <span class="token punctuation">{</span>
     <span class="token property">break-before</span><span class="token punctuation">:</span> page<span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
-<span class="token selector"><span class="token class">.keep-slide</span><span class="token punctuation">,</span> section<span class="token pseudo-class">:has</span><span class="token punctuation">(</span><span class="token combinator">></span> h2<span class="token class">.keep-slide</span><span class="token punctuation">,</span> <span class="token combinator">></span> h3<span class="token class">.keep-slide</span><span class="token punctuation">)</span></span> <span class="token punctuation">{</span>
+<span class="token selector"><span class="token class">.break-before-auto</span><span class="token punctuation">,</span>
+section<span class="token pseudo-class">:has</span><span class="token punctuation">(</span><span class="token combinator">></span> h2<span class="token class">.break-before-auto</span><span class="token punctuation">,</span> <span class="token combinator">></span> h3<span class="token class">.break-before-auto</span><span class="token punctuation">)</span></span> <span class="token punctuation">{</span>
     <span class="token property">break-before</span><span class="token punctuation">:</span> auto<span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre>
       </section>
-      <section class="level3" aria-labelledby="用紙サイズをa5横くらいに設定">
-        <h3 id="用紙サイズをa5横くらいに設定">用紙サイズをA5横くらいに設定</h3>
-        <p>A5横を基本に4:3や16:9になるように調整すると、見出しなど既定の文字サイズがほどよい大きさだと思います。</p>
-      </section>
       <section class="level3" aria-labelledby="アウトライン番号">
-        <h3 class="keep-slide" id="アウトライン番号">アウトライン番号</h3>
-        <p>アウトライン(<code>section</code>構造)に、「1.」、「1.1」などと番号が振ってあると、今どこの話をしてるのか、聞き手が理解する助けになります</p>
+        <h3 class="break-before-auto" id="アウトライン番号">アウトライン番号</h3>
+        <p>アウトライン(<code>section</code>構造)に、「1.」、「1.1」などと番号が振ってあると、プレゼンのときに今どこの話をしてるのか、聞き手が理解する助けになります</p>
       </section>
-      <section class="level3" aria-labelledby="プレゼンはvivliostyle-viewervivliostyleプレビューまたはpdfで">
-        <h3 class="keep-slide" id="プレゼンはvivliostyle-viewervivliostyleプレビューまたはpdfで">プレゼンはVivliostyle Viewer、Vivliostyleプレビュー、またはPDFで</h3>
-        <p>「名前を付けて保存…」または「プリント…」からPDFで保存して、プレゼンはPDFでやります。「スライドショー」はありません。「アニメーション」はありません。「ノート」もありません…</p>
-      </section>
-      <section class="level3" aria-labelledby="長い章節">
-        <h3 id="長い章節">長い章節</h3>
-        <p>さて、このスライド（ページ）は「6. スライドとしての基本的なスタイル設定」の続きです。こういう場合、どうしましょう…</p>
+      <section class="level3" aria-labelledby="プレゼンはvivliostyleやpdfで">
+        <h3 class="break-before-auto" id="プレゼンはvivliostyleやpdfで">プレゼンはVivliostyleやPDFで</h3>
+        <p>
+          <img src="figure/highlight.png" class="float-inline-end" style="block-size: 10lh;">
+        </p>
+        <p>Vivliostyle Viewerではズーム(拡大／縮小)したり文字サイズを変更したりハイライトしたりできます</p>
         <ul>
-          <li>「6. スライドとしての基本的なスタイル設定 (続き)」などの見出しを付ける。</li>
-          <li>次スライドに溢れないように、文字を小さくする。</li>
+          <li>ズームではスライド全体が拡大・縮小します</li>
+          <li>文字サイズの変更では、そのサイズで再レイアウトされ、スライド数が増えたり減ったりすることがあります</li>
+          <li>図は、文字サイズに基づいて<code>block-size: 2em;</code>などと指定していると、一緒にサイズが変わります。<code>block-size: 320px;</code>などの指定では、サイズは変わりません。</li>
         </ul>
+        <p>PDFで保存してPDFでプレゼンすることもできます</p><!--
+        ## 長いセクション
+        
+        ## 表
+        -->
       </section>
-    </section>
-    <section class="level2" aria-labelledby="表">
-      <h2 id="表">表</h2>
-      <table class="result">
-        <thead>
-          <tr>
-            <td></td>
-            <th colspan="2">Levenshtein距離</th>
-            <th colspan="2">Hamming距離</th>
-            <th colspan="2">Caley距離</th>
-            <th colspan="2">Ulam距離</th>
-          </tr>
-          <tr>
-            <td></td>
-            <th>増加した問題数</th>
-            <th>割合</th>
-            <th>増加した問題数</th>
-            <th>割合</th>
-            <th>増加した問題数</th>
-            <th>割合</th>
-            <th>増加した問題数</th>
-            <th>割合</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th class="em">バブルソート</th>
-            <td>2,743,264</td>
-            <td class="em">75.6%</td>
-            <td>3,512,825</td>
-            <td>96.8%</td>
-            <td>3,624,619</td>
-            <td>99.9%</td>
-            <td>0</td>
-            <td class="em">0.0%</td>
-          </tr>
-          <tr>
-            <th class="em">ヒープソート</th>
-            <td>3,628,800</td>
-            <td class="em">100.0%</td>
-            <td>3,628,800</td>
-            <td>100.0%</td>
-            <td>3,628,800</td>
-            <td>100.0%</td>
-            <td>3,628,800</td>
-            <td class="em">100.0%</td>
-          </tr>
-          <tr>
-            <th>挿入ソート</th>
-            <td>1,339,176</td>
-            <td>36.9%</td>
-            <td>1,964,215</td>
-            <td>54.1%</td>
-            <td>3,443,878</td>
-            <td>94.9%</td>
-            <td>0</td>
-            <td>0.0%</td>
-          </tr>
-          <tr>
-            <th>マージソート</th>
-            <td>1,852,755</td>
-            <td>51.1%</td>
-            <td>2,432,789</td>
-            <td>67.0%</td>
-            <td>3,426,453</td>
-            <td>94.4%</td>
-            <td>0</td>
-            <td>0.0%</td>
-          </tr>
-          <tr>
-            <th>クイックソート</th>
-            <td>1,034,478</td>
-            <td>28.5%</td>
-            <td>0</td>
-            <td>0.0%</td>
-            <td>1,089,872</td>
-            <td>30.0%</td>
-            <td>872,908</td>
-            <td>24.1%</td>
-          </tr>
-          <tr>
-            <th>選択ソート</th>
-            <td>0</td>
-            <td>0.0%</td>
-            <td>0</td>
-            <td>0.0%</td>
-            <td>0</td>
-            <td>0.0%</td>
-            <td>0</td>
-            <td>0.0%</td>
-          </tr>
-        </tbody>
-      </table>
     </section>
     <section class="level2" aria-labelledby="2次元の配置">
       <h2 id="2次元の配置">2次元の配置</h2>
-      <div id="colloc-eval">
-        <figure>
-          <img src="figures/co-matrix-bubble-small.png" alt="バブルソート" class="em">
-          <figcaption aria-hidden="true">バブルソート</figcaption>
-        </figure>
-        <figure>
-          <img src="figures/co-matrix-quick-small.png" alt="クイックソート">
-          <figcaption aria-hidden="true">クイックソート</figcaption>
-        </figure>
-        <figure>
-          <img src="figures/co-matrix-heap-small.png" alt="ヒープソート" class="em">
-          <figcaption aria-hidden="true">ヒープソート</figcaption>
-        </figure>
-        <figure>
-          <img src="figures/co-matrix-merge-small.png" alt="マージソート">
-          <figcaption aria-hidden="true">マージソート</figcaption>
-        </figure>
-        <figure>
-          <img src="figures/co-matrix-selection-small.png" alt="選択ソート">
-          <figcaption aria-hidden="true">選択ソート</figcaption>
-        </figure>
-        <figure>
-          <img src="figures/co-matrix-insertion-small.png" alt="挿入ソート">
-          <figcaption aria-hidden="true">挿入ソート</figcaption>
-        </figure>
+      <p>CSSで次のような配置ができます。先に表示結果を、次にソースのMarkdownを示します。</p>
+      <h3 id="表示">表示</h3>
+      <div class="grid-2x2">
+        <section class="level3" aria-labelledby="ポイント1">
+          <h3 id="ポイント1">ポイント1</h3>
+          <ul>
+            <li>こういった配置は他の誰かがデザインしたものを使えるとよいですね。</li>
+            <li>この話は別の機会に</li>
+          </ul>
+        </section>
+        <section class="level3" aria-labelledby="ポイント2">
+          <h3 id="ポイント2">ポイント2</h3>
+          <ul>
+            <li>CSSの競合／相互作用を制御する<strong>お約束</strong>が必要でしょう。</li>
+            <li>みんなが<code>!important</code>を使う世界もどうかと思いますし。</li>
+          </ul>
+        </section>
+        <section class="level3" aria-labelledby="ポイント3">
+          <h3 id="ポイント3">ポイント3</h3>
+          <ul>
+            <li>色は匂へど散りぬるを</li>
+            <li>我が世誰ぞ常ならむ</li>
+            <li>有為の奥山今日越えて</li>
+            <li>浅き夢見し酔ひもせず。</li>
+          </ul>
+        </section>
+        <section class="level3" aria-labelledby="ポイント4">
+          <h3 id="ポイント4">ポイント4</h3>
+          <ul>
+            <li>色は匂へど散りぬるを</li>
+            <li>我が世誰ぞ常ならむ</li>
+            <li>有為の奥山今日越えて</li>
+            <li>浅き夢見し酔ひもせず。</li>
+          </ul>
+        </section>
       </div>
-      <p>実際はヒープソートしている場合に、その結果(時間的な共起行列)をバブルソートで説明できるか …微妙</p><!--
-      Web Publication (WebPub) Format
-      $ vivliostyle build slide.md -o web/ -f webpub
-      -->
+      <section class="level3" aria-labelledby="ソースのmarkdown">
+        <h3 id="ソースのmarkdown">ソースのMarkdown</h3>
+        <div style="font-size: 75%;">
+          <pre class="language-md"><code class="language-md"><span class="token title important"><span class="token punctuation">###</span> ポイント1</span>
+
+<span class="token list punctuation">-</span> こういった配置は他の誰かがデザインしたものを使えるとよいですね。
+<span class="token list punctuation">-</span> この話は別の機会に
+
+<span class="token title important"><span class="token punctuation">###</span> ポイント2</span>
+
+<span class="token list punctuation">-</span> CSSの競合／相互作用を制御する<span class="token bold"><span class="token punctuation">**</span><span class="token content">お約束</span><span class="token punctuation">**</span></span>が必要でしょう。
+<span class="token list punctuation">-</span> みんなが<span class="token code-snippet code keyword">`!important`</span>を使う世界もどうかと思いますし。
+
+<span class="token title important"><span class="token punctuation">###</span> ポイント3</span>
+
+<span class="token list punctuation">-</span> 色は匂へど散りぬるを
+<span class="token list punctuation">-</span> 我が世誰ぞ常ならむ
+<span class="token list punctuation">-</span> 有為の奥山今日越えて
+<span class="token list punctuation">-</span> 浅き夢見し酔ひもせず。
+
+<span class="token title important"><span class="token punctuation">###</span> ポイント4</span>
+
+<span class="token list punctuation">-</span> 色は匂へど散りぬるを
+<span class="token list punctuation">-</span> 我が世誰ぞ常ならむ
+<span class="token list punctuation">-</span> 有為の奥山今日越えて
+<span class="token list punctuation">-</span> 浅き夢見し酔ひもせず。</code></pre>
+        </div><!--
+        Web Publication (WebPub) Format
+        $ vivliostyle build slide.md -o web/ -f webpub
+        -->
+      </section>
     </section>
     <section class="footnotes" role="doc-endnotes">
       <hr>

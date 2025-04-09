@@ -12,8 +12,5 @@ module.exports = {
       path: './slide',
       format: 'webpub',
     },
-  ],
-  toc: {
-    sectionDepth: 2,
-  }
+  ]
 };
