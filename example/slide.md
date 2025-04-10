@@ -42,25 +42,27 @@ v1
 
 ## はじめに
 
-研究会発表のスライドを想定して、HTML+CSSのスライドのいいところをあげてみます。
+研究会発表のスライドを想定して、HTML+CSSでスライドを作る場合の嬉しいところをあげてみます。
 
-- 学会の研究会での発表ならば、元になる論文／予稿があって、テキストで主張する表現はできています
+- 学会の研究会での発表ならば、元になる論文／予稿があって、主張をテキストで表現できています
 - ヘッダーやフッターに挿入する項目（「日付」、「研究会名」、など）や書式（「スライド番号/総スライド数」、など）が研究室などで指導されていたりします
 
 ## テキストが図を回り込んでくれる
 
 ![](figure/circle.svg){style="float: block-start inline-end; float-reference: page; inline-size: 20em;"}
 
--	HTML+CSSでは、テキストが図を回り込むのが普通です。
+HTML+CSSでは、テキストが図を回り込むのが普通で、特に工夫はいりません。
+
 - なお、改行の位置で「あれ？」と思ったみなさん、自動的な改行の位置を調整できるのです。[別のスライド](#word-break)で説明します。
--	色は匂へど散りぬるを我が世誰ぞ常ならむ有為の奥山今日越えて浅き夢見し酔ひもせず。色は匂へど散りぬるを我が世誰ぞ常ならむ有為の奥山今日越えて浅き夢見し酔ひもせず
 -	色は匂へど散りぬるを我が世誰ぞ常ならむ有為の奥山今日越えて浅き夢見し酔ひもせず。色は匂へど散りぬるを我が世誰ぞ常ならむ有為の奥山今日越えて浅き夢見し酔ひもせず
 -	色は匂へど散りぬるを我が世誰ぞ常ならむ有為の奥山今日越えて浅き夢見し酔ひもせず。色は匂へど散りぬるを我が世誰ぞ常ならむ有為の奥山今日越えて浅き夢見し酔ひもせず
 -	色は匂へど散りぬるを我が世誰ぞ常ならむ有為の奥山今日越えて浅き夢見し酔ひもせず。色は匂へど散りぬるを我が世誰ぞ常ならむ有為の奥山今日越えて浅き夢見し酔ひもせず
 
 ## 改行位置の調整{#word-break}
 
-CSSでは、自動的に折り返される改行の位置を次のように調整できます。
+CSSでは自動的に折り返される改行の位置を、`word-break`プロパティ[^word-break]を使って調整できます。
+
+[^word-break]: word-break  https://developer.mozilla.org/ja/docs/Web/CSS/word-break
 
 <div style="word-break: normal;">
 
@@ -89,7 +91,7 @@ CSSでは、自動的に折り返される改行の位置を次のように調�
 ## 文字数が均等になるように改行してくれる
 
 - このスライドのタイトルは1行に収まらないくらい長いので自動的に改行しています。自然なところで改行してるように見えますし、ほぼ同じ長さの2行になっています。
-- しかし、Markdownを見るとタイトルには改行が入っていません。
+- ただし、Markdownを見るとタイトルには改行が入っていません。
 
 <div style="display: flex; flex-direction: column; column-gap: 1em; inline-size: 50%;">
 
@@ -107,11 +109,16 @@ CSSでは、自動的に折り返される改行の位置を次のように調�
 CSSで次の設定を使うと、これを実現できます。
 
 - `word-break: auto-phrase;`で、ことばとして自然なところで改行します。
-- `text-wrap: balance;`で、行の文字数が均等になるように改行します。
+- `text-wrap: balance;`[^text-wrap]で、行の文字数が均等になるように改行します。
+
+[^text-wrap]: text-wrap https://developer.mozilla.org/ja/docs/Web/CSS/text-wrap
 
 ## 約物の前後の空白の詰め
 
-"「"や"（"といった約物が行頭・行末にきたり連続したりする場合の空白の詰めを制御できます。
+"「"や"（"といった約物が行頭・行末にきたり連続したりする場合の空白の詰めを,
+`text-spacing-trim`プロパティ[^text-spacing-trim]で制御できます。
+
+[^text-spacing-trim]: text-spacing-trim https://developer.mozilla.org/ja/docs/Web/CSS/text-spacing-trim
 
 <div style="text-spacing-trim: space-all;">
 
@@ -137,14 +144,16 @@ CSSで次の設定を使うと、これを実現できます。
 
 ## ヘッダーとフッター
 
-- スライド本文のテキストを抜き出して、ヘッダーやフッターに表示できます
-    * 発表のタイトルやセクションの見出し
-    * 日付、発表者、研究会名など
-- 総スライド数を数えてくれて、その値を自動生成するテキストに含められます
+スライド本文のテキストを抜き出して、ヘッダーやフッターに表示できます
+
+- 発表のタイトル（`h1`要素）やセクションの見出し（`##`見出し、つまり`h2`要素など）といった既定のタグの付いたテキスト
+- 日付、発表者、研究会名など既定のタグが付いていないテキスト
+
+総スライド数を数えてくれて、その値を自動生成するテキストに含められます
 
 ### ヘッダー／フッターはCSSのマージン・ボックス
 
-ヘッダーやフッターを表示するには、CSSのマージン・ボックスを利用します。マージン・ボックスは、`@top-left`や`@bottom-right-corner`など、側面とコーナーの合計16個の場所が定義されています<span class="fn">CSS Paged Media Module Level 3 - 5. Page-Margin Boxes https://www.w3.org/TR/css-page-3/#margin-boxes</span><span class="fn">CSS - @page - とほほのWWW入門 https://www.tohoho-web.com/css/rule/page.htm</span>。
+ヘッダーやフッターを表示するには、CSSのマージン・ボックスを利用します。マージン・ボックスは、`@top-left`や`@bottom-right-corner`など、側面とコーナーの合計16個の場所が定義されています<span class="fn">@page https://developer.mozilla.org/ja/docs/Web/CSS/@page</span><span class="fn">CSS Paged Media Module Level 3 - 5. Page-Margin Boxes https://www.w3.org/TR/css-page-3/#margin-boxes</span><span class="fn">CSS - @page - とほほのWWW入門 https://www.tohoho-web.com/css/rule/page.htm</span>。
 
 <div id="page-margin-table">
 
@@ -163,13 +172,13 @@ CSSで次の設定を使うと、これを実現できます。
 スライド本文から所定のテキストを自動的に抜き出してヘッダーやフッターに表示できると、本文を修正したときの修正漏れを防げます。
 
 これには、CSSの名前付き文字列(named string<span class="fn">1.1. Named strings - CSS Generated Content for Paged Media Module https://www.w3.org/TR/css-gcpm-3/#named-strings</span>)という仕組みを使います。
-ざっくり言うと
+やり方は大まかに次の手順です:
 
-1. 抜き出したいテキストに印を付ける
+1. 抜き出したいテキストに印を付ける。「印が付く」=「セレクターで選べる」です
 1. その印を手がかりとしてテキストに名前を付ける
 1. その名前を使って、表示したい場所にテキストを生成する
 
-簡単な方から、次の順番で説明します:
+次の順に説明します:
 
 1. 発表のタイトルやセクションの見出し
 1. 発表のタイトル、日付、発表者、研究会名など
@@ -178,7 +187,7 @@ CSSで次の設定を使うと、これを実現できます。
 
 発表タイトルには`h1`、セクションの見出しには`h2`というHTML既定の印(タグ)を付けますね。`h2`見出しを、自動生成した番号付きで各スライドの`@top-right`マージンに表示するとします。
 
-`string-set`プロパティを使って、生成した番号に、例えば`chapter-number`という名前を、テキストに`chapter`という名前を付けます。
+それにはCSSの`string-set`プロパティを使って、生成した番号に、例えば`chapter-number`という名前を、テキストに`chapter`という名前を付けます。
 
 ```css
 h2 {

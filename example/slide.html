@@ -47,9 +47,9 @@
     </section>
     <section class="level2" aria-labelledby="はじめに">
       <h2 id="はじめに">はじめに</h2>
-      <p>研究会発表のスライドを想定して、HTML+CSSのスライドのいいところをあげてみます。</p>
+      <p>研究会発表のスライドを想定して、HTML+CSSでスライドを作る場合の嬉しいところをあげてみます。</p>
       <ul>
-        <li>学会の研究会での発表ならば、元になる論文／予稿があって、テキストで主張する表現はできています</li>
+        <li>学会の研究会での発表ならば、元になる論文／予稿があって、主張をテキストで表現できています</li>
         <li>ヘッダーやフッターに挿入する項目（「日付」、「研究会名」、など）や書式（「スライド番号/総スライド数」、など）が研究室などで指導されていたりします</li>
       </ul>
     </section>
@@ -58,10 +58,9 @@
       <p>
         <img src="figure/circle.svg" style="float: block-start inline-end; float-reference: page; inline-size: 20em;">
       </p>
+      <p>HTML+CSSでは、テキストが図を回り込むのが普通で、特に工夫はいりません。</p>
       <ul>
-        <li>HTML+CSSでは、テキストが図を回り込むのが普通です。</li>
         <li>なお、改行の位置で「あれ？」と思ったみなさん、自動的な改行の位置を調整できるのです。<a href="#word-break">別のスライド</a>で説明します。</li>
-        <li>色は匂へど散りぬるを我が世誰ぞ常ならむ有為の奥山今日越えて浅き夢見し酔ひもせず。色は匂へど散りぬるを我が世誰ぞ常ならむ有為の奥山今日越えて浅き夢見し酔ひもせず</li>
         <li>色は匂へど散りぬるを我が世誰ぞ常ならむ有為の奥山今日越えて浅き夢見し酔ひもせず。色は匂へど散りぬるを我が世誰ぞ常ならむ有為の奥山今日越えて浅き夢見し酔ひもせず</li>
         <li>色は匂へど散りぬるを我が世誰ぞ常ならむ有為の奥山今日越えて浅き夢見し酔ひもせず。色は匂へど散りぬるを我が世誰ぞ常ならむ有為の奥山今日越えて浅き夢見し酔ひもせず</li>
         <li>色は匂へど散りぬるを我が世誰ぞ常ならむ有為の奥山今日越えて浅き夢見し酔ひもせず。色は匂へど散りぬるを我が世誰ぞ常ならむ有為の奥山今日越えて浅き夢見し酔ひもせず</li>
@@ -69,7 +68,7 @@
     </section>
     <section class="level2" aria-labelledby="word-break">
       <h2 id="word-break">改行位置の調整</h2>
-      <p>CSSでは、自動的に折り返される改行の位置を次のように調整できます。</p>
+      <p>CSSでは自動的に折り返される改行の位置を、<code>word-break</code>プロパティ<a id="fnref1" href="#fn1" class="footnote-ref" role="doc-noteref"><sup>1</sup></a>を使って調整できます。</p>
       <div style="word-break: normal;">
         <p>
           <img src="figure/figure.svg" style="float: inline-end; inline-size: 17em;">
@@ -96,7 +95,7 @@
       <h2 id="文字数が均等になるように改行してくれる">文字数が均等になるように改行してくれる</h2>
       <ul>
         <li>このスライドのタイトルは1行に収まらないくらい長いので自動的に改行しています。自然なところで改行してるように見えますし、ほぼ同じ長さの2行になっています。</li>
-        <li>しかし、Markdownを見るとタイトルには改行が入っていません。</li>
+        <li>ただし、Markdownを見るとタイトルには改行が入っていません。</li>
       </ul>
       <div style="display: flex; flex-direction: column; column-gap: 1em; inline-size: 50%;">
         <div class="arrow-t2b">
@@ -107,12 +106,15 @@
       <p>CSSで次の設定を使うと、これを実現できます。</p>
       <ul>
         <li><code>word-break: auto-phrase;</code>で、ことばとして自然なところで改行します。</li>
-        <li><code>text-wrap: balance;</code>で、行の文字数が均等になるように改行します。</li>
+        <li><code>text-wrap: balance;</code><a id="fnref2" href="#fn2" class="footnote-ref" role="doc-noteref"><sup>2</sup></a>で、行の文字数が均等になるように改行します。</li>
       </ul>
     </section>
     <section class="level2" aria-labelledby="約物の前後の空白の詰め">
       <h2 id="約物の前後の空白の詰め">約物の前後の空白の詰め</h2>
-      <p>"「"や"（"といった約物が行頭・行末にきたり連続したりする場合の空白の詰めを制御できます。</p>
+      <p>
+        "「"や"（"といった約物が行頭・行末にきたり連続したりする場合の空白の詰めを,
+        <code>text-spacing-trim</code>プロパティ<a id="fnref3" href="#fn3" class="footnote-ref" role="doc-noteref"><sup>3</sup></a>で制御できます。
+      </p>
       <div style="text-spacing-trim: space-all;">
         <p><code>text-spacing-trim: space-all;</code>で、約物の空白を詰めません。</p>
         <ul>
@@ -132,18 +134,15 @@
     </section>
     <section class="level2" aria-labelledby="ヘッダーとフッター">
       <h2 id="ヘッダーとフッター">ヘッダーとフッター</h2>
+      <p>スライド本文のテキストを抜き出して、ヘッダーやフッターに表示できます</p>
       <ul>
-        <li>スライド本文のテキストを抜き出して、ヘッダーやフッターに表示できます
-          <ul>
-            <li>発表のタイトルやセクションの見出し</li>
-            <li>日付、発表者、研究会名など</li>
-          </ul>
-        </li>
-        <li>総スライド数を数えてくれて、その値を自動生成するテキストに含められます</li>
+        <li>発表のタイトル（<code>h1</code>要素）やセクションの見出し（<code>##</code>見出し、つまり<code>h2</code>要素など）といった既定のタグの付いたテキスト</li>
+        <li>日付、発表者、研究会名など既定のタグが付いていないテキスト</li>
       </ul>
+      <p>総スライド数を数えてくれて、その値を自動生成するテキストに含められます</p>
       <section class="level3" aria-labelledby="ヘッダーフッターはcssのマージンボックス">
         <h3 id="ヘッダーフッターはcssのマージンボックス">ヘッダー／フッターはCSSのマージン・ボックス</h3>
-        <p>ヘッダーやフッターを表示するには、CSSのマージン・ボックスを利用します。マージン・ボックスは、<code>@top-left</code>や<code>@bottom-right-corner</code>など、側面とコーナーの合計16個の場所が定義されています<span class="fn">CSS Paged Media Module Level 3 - 5. Page-Margin Boxes <a href="https://www.w3.org/TR/css-page-3/#margin-boxes">https://www.w3.org/TR/css-page-3/#margin-boxes</a></span><span class="fn">CSS - @page - とほほのWWW入門 <a href="https://www.tohoho-web.com/css/rule/page.htm">https://www.tohoho-web.com/css/rule/page.htm</a></span>。</p>
+        <p>ヘッダーやフッターを表示するには、CSSのマージン・ボックスを利用します。マージン・ボックスは、<code>@top-left</code>や<code>@bottom-right-corner</code>など、側面とコーナーの合計16個の場所が定義されています<span class="fn">@page <a href="https://developer.mozilla.org/ja/docs/Web/CSS/@page">https://developer.mozilla.org/ja/docs/Web/CSS/@page</a></span><span class="fn">CSS Paged Media Module Level 3 - 5. Page-Margin Boxes <a href="https://www.w3.org/TR/css-page-3/#margin-boxes">https://www.w3.org/TR/css-page-3/#margin-boxes</a></span><span class="fn">CSS - @page - とほほのWWW入門 <a href="https://www.tohoho-web.com/css/rule/page.htm">https://www.tohoho-web.com/css/rule/page.htm</a></span>。</p>
         <div id="page-margin-table">
           <table>
             <thead>
@@ -200,14 +199,14 @@
         <p>スライド本文から所定のテキストを自動的に抜き出してヘッダーやフッターに表示できると、本文を修正したときの修正漏れを防げます。</p>
         <p>
           これには、CSSの名前付き文字列(named string<span class="fn">1.1. Named strings - CSS Generated Content for Paged Media Module <a href="https://www.w3.org/TR/css-gcpm-3/#named-strings">https://www.w3.org/TR/css-gcpm-3/#named-strings</a></span>)という仕組みを使います。
-          ざっくり言うと
+          やり方は大まかに次の手順です:
         </p>
         <ol>
-          <li>抜き出したいテキストに印を付ける</li>
+          <li>抜き出したいテキストに印を付ける。「印が付く」=「セレクターで選べる」です</li>
           <li>その印を手がかりとしてテキストに名前を付ける</li>
           <li>その名前を使って、表示したい場所にテキストを生成する</li>
         </ol>
-        <p>簡単な方から、次の順番で説明します:</p>
+        <p>次の順に説明します:</p>
         <ol>
           <li>発表のタイトルやセクションの見出し</li>
           <li>発表のタイトル、日付、発表者、研究会名など</li>
@@ -216,7 +215,7 @@
       <section class="level3" aria-labelledby="発表のタイトルやセクションの見出し">
         <h3 id="発表のタイトルやセクションの見出し">発表のタイトルやセクションの見出し</h3>
         <p>発表タイトルには<code>h1</code>、セクションの見出しには<code>h2</code>というHTML既定の印(タグ)を付けますね。<code>h2</code>見出しを、自動生成した番号付きで各スライドの<code>@top-right</code>マージンに表示するとします。</p>
-        <p><code>string-set</code>プロパティを使って、生成した番号に、例えば<code>chapter-number</code>という名前を、テキストに<code>chapter</code>という名前を付けます。</p>
+        <p>それにはCSSの<code>string-set</code>プロパティを使って、生成した番号に、例えば<code>chapter-number</code>という名前を、テキストに<code>chapter</code>という名前を付けます。</p>
         <pre class="language-css"><code class="language-css"><span class="token selector">h2</span> <span class="token punctuation">{</span>
     <span class="token property">string-set</span><span class="token punctuation">:</span> chapter-number <span class="token function">content</span><span class="token punctuation">(</span>before<span class="token punctuation">)</span><span class="token punctuation">,</span> chapter <span class="token function">content</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre>
@@ -358,8 +357,8 @@
         <h4 id="最後のスライドにまとめて表示する例">最後のスライドにまとめて表示する例</h4>
         <blockquote>
           <p>
-            Wordでは、脚注や文末脚注の参照を挿入する場所にカーソルを置いて「挿入」-「脚注…」を選びます 。脚注や文末脚注は、後から相互に変換できます<a id="fnref1" href="#fn1" class="footnote-ref" role="doc-noteref"><sup>1</sup></a>。
-            ちなみに、CSS (Cascading Style Sheets)でも脚注を実現できます<a id="fnref2" href="#fn2" class="footnote-ref" role="doc-noteref"><sup>2</sup></a>。
+            Wordでは、脚注や文末脚注の参照を挿入する場所にカーソルを置いて「挿入」-「脚注…」を選びます 。脚注や文末脚注は、後から相互に変換できます<a id="fnref4" href="#fn4" class="footnote-ref" role="doc-noteref"><sup>4</sup></a>。
+            ちなみに、CSS (Cascading Style Sheets)でも脚注を実現できます<a id="fnref5" href="#fn5" class="footnote-ref" role="doc-noteref"><sup>5</sup></a>。
           </p>
         </blockquote>
       </section>
@@ -491,8 +490,11 @@ section<span class="token pseudo-class">:has</span><span class="token punctuatio
     <section class="footnotes" role="doc-endnotes">
       <hr>
       <ol>
-        <li id="fn1" role="doc-endnote"><a href="https://support.microsoft.com/ja-jp/office/%E8%84%9A%E6%B3%A8%E3%81%A8%E6%96%87%E6%9C%AB%E8%84%9A%E6%B3%A8%E3%82%92%E6%8C%BF%E5%85%A5%E3%81%99%E3%82%8B-61f3fb1a-4717-414c-9a8f-015a5f3ff4cb">脚注と文末脚注を挿入する Microsoftサポート</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩</a></li>
-        <li id="fn2" role="doc-endnote">CSS Generated Content for Paged Media Module 2. Footnotes <a href="https://www.w3.org/TR/css-gcpm-3/#footnotes">https://www.w3.org/TR/css-gcpm-3/#footnotes</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩</a></li>
+        <li id="fn1" role="doc-endnote">word-break <a href="https://developer.mozilla.org/ja/docs/Web/CSS/word-break">https://developer.mozilla.org/ja/docs/Web/CSS/word-break</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩</a></li>
+        <li id="fn2" role="doc-endnote">text-wrap <a href="https://developer.mozilla.org/ja/docs/Web/CSS/text-wrap">https://developer.mozilla.org/ja/docs/Web/CSS/text-wrap</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩</a></li>
+        <li id="fn3" role="doc-endnote">text-spacing-trim <a href="https://developer.mozilla.org/ja/docs/Web/CSS/text-spacing-trim">https://developer.mozilla.org/ja/docs/Web/CSS/text-spacing-trim</a><a href="#fnref3" class="footnote-back" role="doc-backlink">↩</a></li>
+        <li id="fn4" role="doc-endnote"><a href="https://support.microsoft.com/ja-jp/office/%E8%84%9A%E6%B3%A8%E3%81%A8%E6%96%87%E6%9C%AB%E8%84%9A%E6%B3%A8%E3%82%92%E6%8C%BF%E5%85%A5%E3%81%99%E3%82%8B-61f3fb1a-4717-414c-9a8f-015a5f3ff4cb">脚注と文末脚注を挿入する Microsoftサポート</a><a href="#fnref4" class="footnote-back" role="doc-backlink">↩</a></li>
+        <li id="fn5" role="doc-endnote">CSS Generated Content for Paged Media Module 2. Footnotes <a href="https://www.w3.org/TR/css-gcpm-3/#footnotes">https://www.w3.org/TR/css-gcpm-3/#footnotes</a><a href="#fnref5" class="footnote-back" role="doc-backlink">↩</a></li>
       </ol>
     </section>
   </body>
