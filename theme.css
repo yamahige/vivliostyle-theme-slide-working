@@ -31,7 +31,6 @@
     widows: 1;
     --yh-theme--spacing-block: calc(var(--yh-theme--line-height) * 1rem);
     margin-block: 0;
-    --yh-theme--spacing-inline: min(2ch, 5vw);
     --yh-theme--slide-title-font-size: 1.2rem;
 }
 
@@ -464,7 +463,7 @@ em {
 
 blockquote {
     margin-block: calc(var(--yh-theme--spacing-block) * 0.5);
-    margin-inline-start: var(--yh-theme--spacing-inline);
+    margin-inline-start: 0;
     padding-inline-start: 1em;
     border-inline-start: thin solid gray;
     text-indent: 0;
