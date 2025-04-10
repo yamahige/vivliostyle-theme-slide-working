@@ -122,7 +122,7 @@ h1 {
 }
 
 .cover {
-    display: none;
+    display: none; /* 「表紙」など、`.cover`セクションを示す見出しを表示しない */
 }
 
 /* 著者 */
