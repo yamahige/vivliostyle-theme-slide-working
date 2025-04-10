@@ -120,27 +120,38 @@ CSSで次の設定を使うと、これを実現できます。
 
 [^text-spacing-trim]: text-spacing-trim https://developer.mozilla.org/ja/docs/Web/CSS/text-spacing-trim
 
-<div style="text-spacing-trim: space-all;">
+`text-spacing-trim: normal;`で、行頭の約物は詰めませんが、約物が連続するときに詰めます。これが既定値です。
 
-`text-spacing-trim: space-all;`で、約物の空白を詰めません。
+<div style="text-spacing-trim: normal; font-size: 90%;">
 
-- 「色は匂へど散りぬるを我が世誰ぞ常ならむ有為の奥山今日越えて浅き夢見し酔ひもせず。」
-- ヘッダーやフッターに挿入する項目（「日付」、「研究会名」、など）が研究室などで指導されていたりします
+> - 「色は匂へど散りぬるを我が世誰ぞ常ならむ有為の奥山今日越えて浅き夢見し酔ひもせず。」
+> - ヘッダーやフッターに挿入する項目（「日付」、「研究会名」、など）が研究室などで指導されていたりします
 
 </div>
-
-<div style="text-spacing-trim: trim-both;">
 
 `text-spacing-trim: trim-both;`で、行頭行末や連続する約物の空白を詰めます。
 
-- 「色は匂へど散りぬるを我が世誰ぞ常ならむ有為の奥山今日越えて浅き夢見し酔ひもせず。」
-- ヘッダーやフッターに挿入する項目（「日付」、「研究会名」、など）が研究室などで指導されていたりします
+<div style="text-spacing-trim: trim-both; font-size: 90%;">
+
+> - 「色は匂へど散りぬるを我が世誰ぞ常ならむ有為の奥山今日越えて浅き夢見し酔ひもせず。」
+> - ヘッダーやフッターに挿入する項目（「日付」、「研究会名」、など）が研究室などで指導されていたりします
 
 </div>
 
-スライドはテキストが短く箇条書きも多いので、行頭は揃ってる方がまとまって見えてよいかもしれません。
+スライドはテキストが短く箇条書きも多いので、テキストのまとまりは行頭の揃えで見せるのがよいかもしれません。
 
 このスライド全体には`text-spacing-trim: trim-both;`と設定されています
+
+<!--
+`text-spacing-trim: space-all;`と設定すると、約物の空白を詰めません。
+
+<div style="text-spacing-trim: space-all; font-size: 90%;">
+
+> - 「色は匂へど散りぬるを我が世誰ぞ常ならむ有為の奥山今日越えて浅き夢見し酔ひもせず。」
+> - ヘッダーやフッターに挿入する項目（「日付」、「研究会名」、など）が研究室などで指導されていたりします
+
+</div>
+-->
 
 ## ヘッダーとフッター
 
@@ -373,6 +384,34 @@ Markdownエディターでのアウトライン表示にこだわらなければ
 
 [^word]: [脚注と文末脚注を挿入する Microsoftサポート](https://support.microsoft.com/ja-jp/office/%E8%84%9A%E6%B3%A8%E3%81%A8%E6%96%87%E6%9C%AB%E8%84%9A%E6%B3%A8%E3%82%92%E6%8C%BF%E5%85%A5%E3%81%99%E3%82%8B-61f3fb1a-4717-414c-9a8f-015a5f3ff4cb)
 [^CSS]: CSS Generated Content for Paged Media Module 2. Footnotes [https://www.w3.org/TR/css-gcpm-3/#footnotes](https://www.w3.org/TR/css-gcpm-3/#footnotes)
+
+## 文字サイズの調整
+
+「1行だけスライドから溢れてしまったけど、テキストを修正する余裕がない」ことってありますよね。
+
+**見出しより下の部分**を`<div style="font-size: 90%;">…</div>`で囲んで文字サイズを調整します。
+
+```md
+## 見出し
+
+このスライドの文字を小さくしたい。
+```
+
+> このスライドの文字を小さくしたい。
+
+```md
+## 見出し
+
+<div style="font-size: 60%;">
+
+このスライドの文字を小さくしたい。
+</div>
+```
+
+<div style="font-size: 70%;">
+
+> このスライドの文字を小さくしたい。
+</div>
 
 ## スライドとしての基本的なスタイル設定とプレゼン操作
 

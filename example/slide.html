@@ -115,22 +115,35 @@
         "「"や"（"といった約物が行頭・行末にきたり連続したりする場合の空白の詰めを,
         <code>text-spacing-trim</code>プロパティ<a id="fnref3" href="#fn3" class="footnote-ref" role="doc-noteref"><sup>3</sup></a>で制御できます。
       </p>
-      <div style="text-spacing-trim: space-all;">
-        <p><code>text-spacing-trim: space-all;</code>で、約物の空白を詰めません。</p>
-        <ul>
-          <li>「色は匂へど散りぬるを我が世誰ぞ常ならむ有為の奥山今日越えて浅き夢見し酔ひもせず。」</li>
-          <li>ヘッダーやフッターに挿入する項目（「日付」、「研究会名」、など）が研究室などで指導されていたりします</li>
-        </ul>
+      <p><code>text-spacing-trim: normal;</code>で、行頭の約物は詰めませんが、約物が連続するときに詰めます。これが既定値です。</p>
+      <div style="text-spacing-trim: normal; font-size: 90%;">
+        <blockquote>
+          <ul>
+            <li>「色は匂へど散りぬるを我が世誰ぞ常ならむ有為の奥山今日越えて浅き夢見し酔ひもせず。」</li>
+            <li>ヘッダーやフッターに挿入する項目（「日付」、「研究会名」、など）が研究室などで指導されていたりします</li>
+          </ul>
+        </blockquote>
       </div>
-      <div style="text-spacing-trim: trim-both;">
-        <p><code>text-spacing-trim: trim-both;</code>で、行頭行末や連続する約物の空白を詰めます。</p>
-        <ul>
-          <li>「色は匂へど散りぬるを我が世誰ぞ常ならむ有為の奥山今日越えて浅き夢見し酔ひもせず。」</li>
-          <li>ヘッダーやフッターに挿入する項目（「日付」、「研究会名」、など）が研究室などで指導されていたりします</li>
-        </ul>
+      <p><code>text-spacing-trim: trim-both;</code>で、行頭行末や連続する約物の空白を詰めます。</p>
+      <div style="text-spacing-trim: trim-both; font-size: 90%;">
+        <blockquote>
+          <ul>
+            <li>「色は匂へど散りぬるを我が世誰ぞ常ならむ有為の奥山今日越えて浅き夢見し酔ひもせず。」</li>
+            <li>ヘッダーやフッターに挿入する項目（「日付」、「研究会名」、など）が研究室などで指導されていたりします</li>
+          </ul>
+        </blockquote>
       </div>
-      <p>スライドはテキストが短く箇条書きも多いので、行頭は揃ってる方がまとまって見えてよいかもしれません。</p>
-      <p>このスライド全体には<code>text-spacing-trim: trim-both;</code>と設定されています</p>
+      <p>スライドはテキストが短く箇条書きも多いので、テキストのまとまりは行頭の揃えで見せるのがよいかもしれません。</p>
+      <p>このスライド全体には<code>text-spacing-trim: trim-both;</code>と設定されています</p><!--
+      `text-spacing-trim: space-all;`と設定すると、約物の空白を詰めません。
+      
+      <div style="text-spacing-trim: space-all; font-size: 90%;">
+      
+      > - 「色は匂へど散りぬるを我が世誰ぞ常ならむ有為の奥山今日越えて浅き夢見し酔ひもせず。」
+      > - ヘッダーやフッターに挿入する項目（「日付」、「研究会名」、など）が研究室などで指導されていたりします
+      
+      </div>
+      -->
     </section>
     <section class="level2" aria-labelledby="ヘッダーとフッター">
       <h2 id="ヘッダーとフッター">ヘッダーとフッター</h2>
@@ -362,6 +375,28 @@
           </p>
         </blockquote>
       </section>
+    </section>
+    <section class="level2" aria-labelledby="文字サイズの調整">
+      <h2 id="文字サイズの調整">文字サイズの調整</h2>
+      <p>「1行だけスライドから溢れてしまったけど、テキストを修正する余裕がない」ことってありますよね。</p>
+      <p><strong>見出しより下の部分</strong>を<code>&#x3C;div style="font-size: 90%;">…&#x3C;/div></code>で囲んで文字サイズを調整します。</p>
+      <pre class="language-md"><code class="language-md"><span class="token title important"><span class="token punctuation">##</span> 見出し</span>
+
+このスライドの文字を小さくしたい。</code></pre>
+      <blockquote>
+        <p>このスライドの文字を小さくしたい。</p>
+      </blockquote>
+      <pre class="language-md"><code class="language-md"><span class="token title important"><span class="token punctuation">##</span> 見出し</span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;</span>div</span> <span class="token special-attr"><span class="token attr-name">style</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token value css language-css"><span class="token property">font-size</span><span class="token punctuation">:</span> <span class="token number">60</span><span class="token unit">%</span><span class="token punctuation">;</span></span><span class="token punctuation">"</span></span></span><span class="token punctuation">></span></span>
+
+このスライドの文字を小さくしたい。
+<span class="token tag"><span class="token tag"><span class="token punctuation">&#x3C;/</span>div</span><span class="token punctuation">></span></span></code></pre>
+      <div style="font-size: 70%;">
+        <blockquote>
+          <p>このスライドの文字を小さくしたい。</p>
+        </blockquote>
+      </div>
     </section>
     <section class="level2" aria-labelledby="スライドとしての基本的なスタイル設定とプレゼン操作">
       <h2 id="スライドとしての基本的なスタイル設定とプレゼン操作">スライドとしての基本的なスタイル設定とプレゼン操作</h2>
